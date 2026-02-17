@@ -1,0 +1,1768 @@
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - complementary [ref=e4]:
+      - generic [ref=e6]:
+        - img [ref=e8]
+        - generic [ref=e12]:
+          - heading "Budget" [level=1] [ref=e13]
+          - paragraph [ref=e14]: Tracker
+      - navigation [ref=e15]:
+        - link "Dashboard" [ref=e16] [cursor=pointer]:
+          - /url: /
+          - img [ref=e17]
+          - generic [ref=e22]: Dashboard
+        - link "Transactions" [active] [ref=e23] [cursor=pointer]:
+          - /url: /transactions
+          - img [ref=e24]
+          - generic [ref=e25]: Transactions
+        - link "Analytics" [ref=e26] [cursor=pointer]:
+          - /url: /analytics
+          - img [ref=e27]
+          - generic [ref=e30]: Analytics
+        - link "Import" [ref=e31] [cursor=pointer]:
+          - /url: /import
+          - img [ref=e32]
+          - generic [ref=e35]: Import
+        - link "Settings" [ref=e36] [cursor=pointer]:
+          - /url: /settings
+          - img [ref=e37]
+          - generic [ref=e40]: Settings
+    - main [ref=e41]:
+      - generic [ref=e2856]:
+        - generic [ref=e2857]:
+          - generic [ref=e2858]:
+            - heading "Transactions" [level=1] [ref=e2859]
+            - paragraph [ref=e2860]: Manage and categorize your transactions
+          - button "Auto-categorize 100" [ref=e2861] [cursor=pointer]:
+            - img [ref=e2862]
+            - text: Auto-categorize 100
+        - generic [ref=e2864]:
+          - generic [ref=e2865]:
+            - img [ref=e2866]
+            - textbox "Search transactions..." [ref=e2869]
+          - generic [ref=e2870]:
+            - img [ref=e2871]
+            - combobox [ref=e2873] [cursor=pointer]:
+              - option "All Categories" [selected]
+              - option "Income"
+              - option "Housing"
+              - option "Food"
+              - option "Transportation"
+              - option "Shopping"
+              - option "Entertainment"
+              - option "Health"
+              - option "Financial"
+              - option "Education"
+              - option "Travel"
+              - option "Other"
+        - table [ref=e2876]:
+          - rowgroup [ref=e2877]:
+            - row "Date Description Category Amount Actions" [ref=e2878]:
+              - columnheader "Date" [ref=e2879]
+              - columnheader "Description" [ref=e2880]
+              - columnheader "Category" [ref=e2881]
+              - columnheader "Amount" [ref=e2882]
+              - columnheader "Actions" [ref=e2883]
+          - rowgroup [ref=e2884]:
+            - row "Feb 13, 2026 Rent Payment Test Account Uncategorized $2,126.43" [ref=e2885]:
+              - cell "Feb 13, 2026" [ref=e2886]
+              - cell "Rent Payment Test Account" [ref=e2887]:
+                - generic [ref=e2888]:
+                  - paragraph [ref=e2889]: Rent Payment
+                  - paragraph [ref=e2890]: Test Account
+              - cell "Uncategorized" [ref=e2891]
+              - cell "$2,126.43" [ref=e2892]:
+                - generic [ref=e2893]:
+                  - img [ref=e2894]
+                  - generic [ref=e2897]: $2,126.43
+              - cell [ref=e2898]:
+                - generic [ref=e2899]:
+                  - button [ref=e2900] [cursor=pointer]:
+                    - img [ref=e2901]
+                  - button [ref=e2903] [cursor=pointer]:
+                    - img [ref=e2904]
+            - row "Feb 13, 2026 Tax Refund Test Account Uncategorized $850.00" [ref=e2907]:
+              - cell "Feb 13, 2026" [ref=e2908]
+              - cell "Tax Refund Test Account" [ref=e2909]:
+                - generic [ref=e2910]:
+                  - paragraph [ref=e2911]: Tax Refund
+                  - paragraph [ref=e2912]: Test Account
+              - cell "Uncategorized" [ref=e2913]
+              - cell "$850.00" [ref=e2914]:
+                - generic [ref=e2915]:
+                  - img [ref=e2916]
+                  - generic [ref=e2919]: $850.00
+              - cell [ref=e2920]:
+                - generic [ref=e2921]:
+                  - button [ref=e2922] [cursor=pointer]:
+                    - img [ref=e2923]
+                  - button [ref=e2925] [cursor=pointer]:
+                    - img [ref=e2926]
+            - row "Feb 13, 2026 Gas Station (Trip) Test Account Uncategorized $39.84" [ref=e2929]:
+              - cell "Feb 13, 2026" [ref=e2930]
+              - cell "Gas Station (Trip) Test Account" [ref=e2931]:
+                - generic [ref=e2932]:
+                  - paragraph [ref=e2933]: Gas Station (Trip)
+                  - paragraph [ref=e2934]: Test Account
+              - cell "Uncategorized" [ref=e2935]
+              - cell "$39.84" [ref=e2936]:
+                - generic [ref=e2937]:
+                  - img [ref=e2938]
+                  - generic [ref=e2941]: $39.84
+              - cell [ref=e2942]:
+                - generic [ref=e2943]:
+                  - button [ref=e2944] [cursor=pointer]:
+                    - img [ref=e2945]
+                  - button [ref=e2947] [cursor=pointer]:
+                    - img [ref=e2948]
+            - row "Feb 13, 2026 Rent Payment Test Account Uncategorized $2,981.96" [ref=e2951]:
+              - cell "Feb 13, 2026" [ref=e2952]
+              - cell "Rent Payment Test Account" [ref=e2953]:
+                - generic [ref=e2954]:
+                  - paragraph [ref=e2955]: Rent Payment
+                  - paragraph [ref=e2956]: Test Account
+              - cell "Uncategorized" [ref=e2957]
+              - cell "$2,981.96" [ref=e2958]:
+                - generic [ref=e2959]:
+                  - img [ref=e2960]
+                  - generic [ref=e2963]: $2,981.96
+              - cell [ref=e2964]:
+                - generic [ref=e2965]:
+                  - button [ref=e2966] [cursor=pointer]:
+                    - img [ref=e2967]
+                  - button [ref=e2969] [cursor=pointer]:
+                    - img [ref=e2970]
+            - row "Feb 12, 2026 Investment Transfer Test Account Uncategorized $474.21" [ref=e2973]:
+              - cell "Feb 12, 2026" [ref=e2974]
+              - cell "Investment Transfer Test Account" [ref=e2975]:
+                - generic [ref=e2976]:
+                  - paragraph [ref=e2977]: Investment Transfer
+                  - paragraph [ref=e2978]: Test Account
+              - cell "Uncategorized" [ref=e2979]
+              - cell "$474.21" [ref=e2980]:
+                - generic [ref=e2981]:
+                  - img [ref=e2982]
+                  - generic [ref=e2985]: $474.21
+              - cell [ref=e2986]:
+                - generic [ref=e2987]:
+                  - button [ref=e2988] [cursor=pointer]:
+                    - img [ref=e2989]
+                  - button [ref=e2991] [cursor=pointer]:
+                    - img [ref=e2992]
+            - row "Feb 12, 2026 Uber Test Account Uncategorized $20.38" [ref=e2995]:
+              - cell "Feb 12, 2026" [ref=e2996]
+              - cell "Uber Test Account" [ref=e2997]:
+                - generic [ref=e2998]:
+                  - paragraph [ref=e2999]: Uber
+                  - paragraph [ref=e3000]: Test Account
+              - cell "Uncategorized" [ref=e3001]
+              - cell "$20.38" [ref=e3002]:
+                - generic [ref=e3003]:
+                  - img [ref=e3004]
+                  - generic [ref=e3007]: $20.38
+              - cell [ref=e3008]:
+                - generic [ref=e3009]:
+                  - button [ref=e3010] [cursor=pointer]:
+                    - img [ref=e3011]
+                  - button [ref=e3013] [cursor=pointer]:
+                    - img [ref=e3014]
+            - row "Feb 12, 2026 Netflix Test Account Uncategorized $14.40" [ref=e3017]:
+              - cell "Feb 12, 2026" [ref=e3018]
+              - cell "Netflix Test Account" [ref=e3019]:
+                - generic [ref=e3020]:
+                  - paragraph [ref=e3021]: Netflix
+                  - paragraph [ref=e3022]: Test Account
+              - cell "Uncategorized" [ref=e3023]
+              - cell "$14.40" [ref=e3024]:
+                - generic [ref=e3025]:
+                  - img [ref=e3026]
+                  - generic [ref=e3029]: $14.40
+              - cell [ref=e3030]:
+                - generic [ref=e3031]:
+                  - button [ref=e3032] [cursor=pointer]:
+                    - img [ref=e3033]
+                  - button [ref=e3035] [cursor=pointer]:
+                    - img [ref=e3036]
+            - row "Feb 11, 2026 Bank Fee Test Account Uncategorized $9.80" [ref=e3039]:
+              - cell "Feb 11, 2026" [ref=e3040]
+              - cell "Bank Fee Test Account" [ref=e3041]:
+                - generic [ref=e3042]:
+                  - paragraph [ref=e3043]: Bank Fee
+                  - paragraph [ref=e3044]: Test Account
+              - cell "Uncategorized" [ref=e3045]
+              - cell "$9.80" [ref=e3046]:
+                - generic [ref=e3047]:
+                  - img [ref=e3048]
+                  - generic [ref=e3051]: $9.80
+              - cell [ref=e3052]:
+                - generic [ref=e3053]:
+                  - button [ref=e3054] [cursor=pointer]:
+                    - img [ref=e3055]
+                  - button [ref=e3057] [cursor=pointer]:
+                    - img [ref=e3058]
+            - row "Feb 11, 2026 Enterprise Rent-A-Car Test Account Uncategorized $217.79" [ref=e3061]:
+              - cell "Feb 11, 2026" [ref=e3062]
+              - cell "Enterprise Rent-A-Car Test Account" [ref=e3063]:
+                - generic [ref=e3064]:
+                  - paragraph [ref=e3065]: Enterprise Rent-A-Car
+                  - paragraph [ref=e3066]: Test Account
+              - cell "Uncategorized" [ref=e3067]
+              - cell "$217.79" [ref=e3068]:
+                - generic [ref=e3069]:
+                  - img [ref=e3070]
+                  - generic [ref=e3073]: $217.79
+              - cell [ref=e3074]:
+                - generic [ref=e3075]:
+                  - button [ref=e3076] [cursor=pointer]:
+                    - img [ref=e3077]
+                  - button [ref=e3079] [cursor=pointer]:
+                    - img [ref=e3080]
+            - row "Feb 11, 2026 Enterprise Rent-A-Car Test Account Uncategorized $155.76" [ref=e3083]:
+              - cell "Feb 11, 2026" [ref=e3084]
+              - cell "Enterprise Rent-A-Car Test Account" [ref=e3085]:
+                - generic [ref=e3086]:
+                  - paragraph [ref=e3087]: Enterprise Rent-A-Car
+                  - paragraph [ref=e3088]: Test Account
+              - cell "Uncategorized" [ref=e3089]
+              - cell "$155.76" [ref=e3090]:
+                - generic [ref=e3091]:
+                  - img [ref=e3092]
+                  - generic [ref=e3095]: $155.76
+              - cell [ref=e3096]:
+                - generic [ref=e3097]:
+                  - button [ref=e3098] [cursor=pointer]:
+                    - img [ref=e3099]
+                  - button [ref=e3101] [cursor=pointer]:
+                    - img [ref=e3102]
+            - row "Feb 11, 2026 Gas Station (Trip) Test Account Uncategorized $46.88" [ref=e3105]:
+              - cell "Feb 11, 2026" [ref=e3106]
+              - cell "Gas Station (Trip) Test Account" [ref=e3107]:
+                - generic [ref=e3108]:
+                  - paragraph [ref=e3109]: Gas Station (Trip)
+                  - paragraph [ref=e3110]: Test Account
+              - cell "Uncategorized" [ref=e3111]
+              - cell "$46.88" [ref=e3112]:
+                - generic [ref=e3113]:
+                  - img [ref=e3114]
+                  - generic [ref=e3117]: $46.88
+              - cell [ref=e3118]:
+                - generic [ref=e3119]:
+                  - button [ref=e3120] [cursor=pointer]:
+                    - img [ref=e3121]
+                  - button [ref=e3123] [cursor=pointer]:
+                    - img [ref=e3124]
+            - row "Feb 11, 2026 United Airlines Test Account Uncategorized $392.02" [ref=e3127]:
+              - cell "Feb 11, 2026" [ref=e3128]
+              - cell "United Airlines Test Account" [ref=e3129]:
+                - generic [ref=e3130]:
+                  - paragraph [ref=e3131]: United Airlines
+                  - paragraph [ref=e3132]: Test Account
+              - cell "Uncategorized" [ref=e3133]
+              - cell "$392.02" [ref=e3134]:
+                - generic [ref=e3135]:
+                  - img [ref=e3136]
+                  - generic [ref=e3139]: $392.02
+              - cell [ref=e3140]:
+                - generic [ref=e3141]:
+                  - button [ref=e3142] [cursor=pointer]:
+                    - img [ref=e3143]
+                  - button [ref=e3145] [cursor=pointer]:
+                    - img [ref=e3146]
+            - row "Feb 10, 2026 Doctor Office Test Account Uncategorized $145.91" [ref=e3149]:
+              - cell "Feb 10, 2026" [ref=e3150]
+              - cell "Doctor Office Test Account" [ref=e3151]:
+                - generic [ref=e3152]:
+                  - paragraph [ref=e3153]: Doctor Office
+                  - paragraph [ref=e3154]: Test Account
+              - cell "Uncategorized" [ref=e3155]
+              - cell "$145.91" [ref=e3156]:
+                - generic [ref=e3157]:
+                  - img [ref=e3158]
+                  - generic [ref=e3161]: $145.91
+              - cell [ref=e3162]:
+                - generic [ref=e3163]:
+                  - button [ref=e3164] [cursor=pointer]:
+                    - img [ref=e3165]
+                  - button [ref=e3167] [cursor=pointer]:
+                    - img [ref=e3168]
+            - row "Feb 10, 2026 Investment Transfer Test Account Uncategorized $453.84" [ref=e3171]:
+              - cell "Feb 10, 2026" [ref=e3172]
+              - cell "Investment Transfer Test Account" [ref=e3173]:
+                - generic [ref=e3174]:
+                  - paragraph [ref=e3175]: Investment Transfer
+                  - paragraph [ref=e3176]: Test Account
+              - cell "Uncategorized" [ref=e3177]
+              - cell "$453.84" [ref=e3178]:
+                - generic [ref=e3179]:
+                  - img [ref=e3180]
+                  - generic [ref=e3183]: $453.84
+              - cell [ref=e3184]:
+                - generic [ref=e3185]:
+                  - button [ref=e3186] [cursor=pointer]:
+                    - img [ref=e3187]
+                  - button [ref=e3189] [cursor=pointer]:
+                    - img [ref=e3190]
+            - row "Feb 10, 2026 Enterprise Rent-A-Car Test Account Uncategorized $183.66" [ref=e3193]:
+              - cell "Feb 10, 2026" [ref=e3194]
+              - cell "Enterprise Rent-A-Car Test Account" [ref=e3195]:
+                - generic [ref=e3196]:
+                  - paragraph [ref=e3197]: Enterprise Rent-A-Car
+                  - paragraph [ref=e3198]: Test Account
+              - cell "Uncategorized" [ref=e3199]
+              - cell "$183.66" [ref=e3200]:
+                - generic [ref=e3201]:
+                  - img [ref=e3202]
+                  - generic [ref=e3205]: $183.66
+              - cell [ref=e3206]:
+                - generic [ref=e3207]:
+                  - button [ref=e3208] [cursor=pointer]:
+                    - img [ref=e3209]
+                  - button [ref=e3211] [cursor=pointer]:
+                    - img [ref=e3212]
+            - row "Feb 10, 2026 Credit Card Payment Test Account Uncategorized $1,394.24" [ref=e3215]:
+              - cell "Feb 10, 2026" [ref=e3216]
+              - cell "Credit Card Payment Test Account" [ref=e3217]:
+                - generic [ref=e3218]:
+                  - paragraph [ref=e3219]: Credit Card Payment
+                  - paragraph [ref=e3220]: Test Account
+              - cell "Uncategorized" [ref=e3221]
+              - cell "$1,394.24" [ref=e3222]:
+                - generic [ref=e3223]:
+                  - img [ref=e3224]
+                  - generic [ref=e3227]: $1,394.24
+              - cell [ref=e3228]:
+                - generic [ref=e3229]:
+                  - button [ref=e3230] [cursor=pointer]:
+                    - img [ref=e3231]
+                  - button [ref=e3233] [cursor=pointer]:
+                    - img [ref=e3234]
+            - row "Feb 10, 2026 Target Test Account Uncategorized $135.48" [ref=e3237]:
+              - cell "Feb 10, 2026" [ref=e3238]
+              - cell "Target Test Account" [ref=e3239]:
+                - generic [ref=e3240]:
+                  - paragraph [ref=e3241]: Target
+                  - paragraph [ref=e3242]: Test Account
+              - cell "Uncategorized" [ref=e3243]
+              - cell "$135.48" [ref=e3244]:
+                - generic [ref=e3245]:
+                  - img [ref=e3246]
+                  - generic [ref=e3249]: $135.48
+              - cell [ref=e3250]:
+                - generic [ref=e3251]:
+                  - button [ref=e3252] [cursor=pointer]:
+                    - img [ref=e3253]
+                  - button [ref=e3255] [cursor=pointer]:
+                    - img [ref=e3256]
+            - row "Feb 10, 2026 Electric Company Test Account Uncategorized $130.06" [ref=e3259]:
+              - cell "Feb 10, 2026" [ref=e3260]
+              - cell "Electric Company Test Account" [ref=e3261]:
+                - generic [ref=e3262]:
+                  - paragraph [ref=e3263]: Electric Company
+                  - paragraph [ref=e3264]: Test Account
+              - cell "Uncategorized" [ref=e3265]
+              - cell "$130.06" [ref=e3266]:
+                - generic [ref=e3267]:
+                  - img [ref=e3268]
+                  - generic [ref=e3271]: $130.06
+              - cell [ref=e3272]:
+                - generic [ref=e3273]:
+                  - button [ref=e3274] [cursor=pointer]:
+                    - img [ref=e3275]
+                  - button [ref=e3277] [cursor=pointer]:
+                    - img [ref=e3278]
+            - row "Feb 9, 2026 Apple Store Test Account Uncategorized $34.29" [ref=e3281]:
+              - cell "Feb 9, 2026" [ref=e3282]
+              - cell "Apple Store Test Account" [ref=e3283]:
+                - generic [ref=e3284]:
+                  - paragraph [ref=e3285]: Apple Store
+                  - paragraph [ref=e3286]: Test Account
+              - cell "Uncategorized" [ref=e3287]
+              - cell "$34.29" [ref=e3288]:
+                - generic [ref=e3289]:
+                  - img [ref=e3290]
+                  - generic [ref=e3293]: $34.29
+              - cell [ref=e3294]:
+                - generic [ref=e3295]:
+                  - button [ref=e3296] [cursor=pointer]:
+                    - img [ref=e3297]
+                  - button [ref=e3299] [cursor=pointer]:
+                    - img [ref=e3300]
+            - row "Feb 9, 2026 Concert Tickets Test Account Uncategorized $112.03" [ref=e3303]:
+              - cell "Feb 9, 2026" [ref=e3304]
+              - cell "Concert Tickets Test Account" [ref=e3305]:
+                - generic [ref=e3306]:
+                  - paragraph [ref=e3307]: Concert Tickets
+                  - paragraph [ref=e3308]: Test Account
+              - cell "Uncategorized" [ref=e3309]
+              - cell "$112.03" [ref=e3310]:
+                - generic [ref=e3311]:
+                  - img [ref=e3312]
+                  - generic [ref=e3315]: $112.03
+              - cell [ref=e3316]:
+                - generic [ref=e3317]:
+                  - button [ref=e3318] [cursor=pointer]:
+                    - img [ref=e3319]
+                  - button [ref=e3321] [cursor=pointer]:
+                    - img [ref=e3322]
+            - row "Feb 9, 2026 Auto Repair Shop Test Account Uncategorized $369.55" [ref=e3325]:
+              - cell "Feb 9, 2026" [ref=e3326]
+              - cell "Auto Repair Shop Test Account" [ref=e3327]:
+                - generic [ref=e3328]:
+                  - paragraph [ref=e3329]: Auto Repair Shop
+                  - paragraph [ref=e3330]: Test Account
+              - cell "Uncategorized" [ref=e3331]
+              - cell "$369.55" [ref=e3332]:
+                - generic [ref=e3333]:
+                  - img [ref=e3334]
+                  - generic [ref=e3337]: $369.55
+              - cell [ref=e3338]:
+                - generic [ref=e3339]:
+                  - button [ref=e3340] [cursor=pointer]:
+                    - img [ref=e3341]
+                  - button [ref=e3343] [cursor=pointer]:
+                    - img [ref=e3344]
+            - row "Feb 9, 2026 Lyft Test Account Uncategorized $16.22" [ref=e3347]:
+              - cell "Feb 9, 2026" [ref=e3348]
+              - cell "Lyft Test Account" [ref=e3349]:
+                - generic [ref=e3350]:
+                  - paragraph [ref=e3351]: Lyft
+                  - paragraph [ref=e3352]: Test Account
+              - cell "Uncategorized" [ref=e3353]
+              - cell "$16.22" [ref=e3354]:
+                - generic [ref=e3355]:
+                  - img [ref=e3356]
+                  - generic [ref=e3359]: $16.22
+              - cell [ref=e3360]:
+                - generic [ref=e3361]:
+                  - button [ref=e3362] [cursor=pointer]:
+                    - img [ref=e3363]
+                  - button [ref=e3365] [cursor=pointer]:
+                    - img [ref=e3366]
+            - row "Feb 9, 2026 Auto Repair Shop Test Account Uncategorized $391.93" [ref=e3369]:
+              - cell "Feb 9, 2026" [ref=e3370]
+              - cell "Auto Repair Shop Test Account" [ref=e3371]:
+                - generic [ref=e3372]:
+                  - paragraph [ref=e3373]: Auto Repair Shop
+                  - paragraph [ref=e3374]: Test Account
+              - cell "Uncategorized" [ref=e3375]
+              - cell "$391.93" [ref=e3376]:
+                - generic [ref=e3377]:
+                  - img [ref=e3378]
+                  - generic [ref=e3381]: $391.93
+              - cell [ref=e3382]:
+                - generic [ref=e3383]:
+                  - button [ref=e3384] [cursor=pointer]:
+                    - img [ref=e3385]
+                  - button [ref=e3387] [cursor=pointer]:
+                    - img [ref=e3388]
+            - row "Feb 9, 2026 Home Depot Test Account Uncategorized $98.02" [ref=e3391]:
+              - cell "Feb 9, 2026" [ref=e3392]
+              - cell "Home Depot Test Account" [ref=e3393]:
+                - generic [ref=e3394]:
+                  - paragraph [ref=e3395]: Home Depot
+                  - paragraph [ref=e3396]: Test Account
+              - cell "Uncategorized" [ref=e3397]
+              - cell "$98.02" [ref=e3398]:
+                - generic [ref=e3399]:
+                  - img [ref=e3400]
+                  - generic [ref=e3403]: $98.02
+              - cell [ref=e3404]:
+                - generic [ref=e3405]:
+                  - button [ref=e3406] [cursor=pointer]:
+                    - img [ref=e3407]
+                  - button [ref=e3409] [cursor=pointer]:
+                    - img [ref=e3410]
+            - row "Feb 9, 2026 Lyft Test Account Uncategorized $21.92" [ref=e3413]:
+              - cell "Feb 9, 2026" [ref=e3414]
+              - cell "Lyft Test Account" [ref=e3415]:
+                - generic [ref=e3416]:
+                  - paragraph [ref=e3417]: Lyft
+                  - paragraph [ref=e3418]: Test Account
+              - cell "Uncategorized" [ref=e3419]
+              - cell "$21.92" [ref=e3420]:
+                - generic [ref=e3421]:
+                  - img [ref=e3422]
+                  - generic [ref=e3425]: $21.92
+              - cell [ref=e3426]:
+                - generic [ref=e3427]:
+                  - button [ref=e3428] [cursor=pointer]:
+                    - img [ref=e3429]
+                  - button [ref=e3431] [cursor=pointer]:
+                    - img [ref=e3432]
+            - row "Feb 8, 2026 Electric Company Test Account Uncategorized $112.79" [ref=e3435]:
+              - cell "Feb 8, 2026" [ref=e3436]
+              - cell "Electric Company Test Account" [ref=e3437]:
+                - generic [ref=e3438]:
+                  - paragraph [ref=e3439]: Electric Company
+                  - paragraph [ref=e3440]: Test Account
+              - cell "Uncategorized" [ref=e3441]
+              - cell "$112.79" [ref=e3442]:
+                - generic [ref=e3443]:
+                  - img [ref=e3444]
+                  - generic [ref=e3447]: $112.79
+              - cell [ref=e3448]:
+                - generic [ref=e3449]:
+                  - button [ref=e3450] [cursor=pointer]:
+                    - img [ref=e3451]
+                  - button [ref=e3453] [cursor=pointer]:
+                    - img [ref=e3454]
+            - row "Feb 8, 2026 Marriott Hotel Test Account Uncategorized $368.70" [ref=e3457]:
+              - cell "Feb 8, 2026" [ref=e3458]
+              - cell "Marriott Hotel Test Account" [ref=e3459]:
+                - generic [ref=e3460]:
+                  - paragraph [ref=e3461]: Marriott Hotel
+                  - paragraph [ref=e3462]: Test Account
+              - cell "Uncategorized" [ref=e3463]
+              - cell "$368.70" [ref=e3464]:
+                - generic [ref=e3465]:
+                  - img [ref=e3466]
+                  - generic [ref=e3469]: $368.70
+              - cell [ref=e3470]:
+                - generic [ref=e3471]:
+                  - button [ref=e3472] [cursor=pointer]:
+                    - img [ref=e3473]
+                  - button [ref=e3475] [cursor=pointer]:
+                    - img [ref=e3476]
+            - row "Feb 8, 2026 Bank Fee Test Account Uncategorized $10.55" [ref=e3479]:
+              - cell "Feb 8, 2026" [ref=e3480]
+              - cell "Bank Fee Test Account" [ref=e3481]:
+                - generic [ref=e3482]:
+                  - paragraph [ref=e3483]: Bank Fee
+                  - paragraph [ref=e3484]: Test Account
+              - cell "Uncategorized" [ref=e3485]
+              - cell "$10.55" [ref=e3486]:
+                - generic [ref=e3487]:
+                  - img [ref=e3488]
+                  - generic [ref=e3491]: $10.55
+              - cell [ref=e3492]:
+                - generic [ref=e3493]:
+                  - button [ref=e3494] [cursor=pointer]:
+                    - img [ref=e3495]
+                  - button [ref=e3497] [cursor=pointer]:
+                    - img [ref=e3498]
+            - row "Feb 8, 2026 Safeway Test Account Uncategorized $57.33" [ref=e3501]:
+              - cell "Feb 8, 2026" [ref=e3502]
+              - cell "Safeway Test Account" [ref=e3503]:
+                - generic [ref=e3504]:
+                  - paragraph [ref=e3505]: Safeway
+                  - paragraph [ref=e3506]: Test Account
+              - cell "Uncategorized" [ref=e3507]
+              - cell "$57.33" [ref=e3508]:
+                - generic [ref=e3509]:
+                  - img [ref=e3510]
+                  - generic [ref=e3513]: $57.33
+              - cell [ref=e3514]:
+                - generic [ref=e3515]:
+                  - button [ref=e3516] [cursor=pointer]:
+                    - img [ref=e3517]
+                  - button [ref=e3519] [cursor=pointer]:
+                    - img [ref=e3520]
+            - row "Feb 8, 2026 Chipotle Test Account Uncategorized $12.32" [ref=e3523]:
+              - cell "Feb 8, 2026" [ref=e3524]
+              - cell "Chipotle Test Account" [ref=e3525]:
+                - generic [ref=e3526]:
+                  - paragraph [ref=e3527]: Chipotle
+                  - paragraph [ref=e3528]: Test Account
+              - cell "Uncategorized" [ref=e3529]
+              - cell "$12.32" [ref=e3530]:
+                - generic [ref=e3531]:
+                  - img [ref=e3532]
+                  - generic [ref=e3535]: $12.32
+              - cell [ref=e3536]:
+                - generic [ref=e3537]:
+                  - button [ref=e3538] [cursor=pointer]:
+                    - img [ref=e3539]
+                  - button [ref=e3541] [cursor=pointer]:
+                    - img [ref=e3542]
+            - row "Feb 7, 2026 Home Depot Test Account Uncategorized $73.18" [ref=e3545]:
+              - cell "Feb 7, 2026" [ref=e3546]
+              - cell "Home Depot Test Account" [ref=e3547]:
+                - generic [ref=e3548]:
+                  - paragraph [ref=e3549]: Home Depot
+                  - paragraph [ref=e3550]: Test Account
+              - cell "Uncategorized" [ref=e3551]
+              - cell "$73.18" [ref=e3552]:
+                - generic [ref=e3553]:
+                  - img [ref=e3554]
+                  - generic [ref=e3557]: $73.18
+              - cell [ref=e3558]:
+                - generic [ref=e3559]:
+                  - button [ref=e3560] [cursor=pointer]:
+                    - img [ref=e3561]
+                  - button [ref=e3563] [cursor=pointer]:
+                    - img [ref=e3564]
+            - row "Feb 7, 2026 Lyft Test Account Uncategorized $17.26" [ref=e3567]:
+              - cell "Feb 7, 2026" [ref=e3568]
+              - cell "Lyft Test Account" [ref=e3569]:
+                - generic [ref=e3570]:
+                  - paragraph [ref=e3571]: Lyft
+                  - paragraph [ref=e3572]: Test Account
+              - cell "Uncategorized" [ref=e3573]
+              - cell "$17.26" [ref=e3574]:
+                - generic [ref=e3575]:
+                  - img [ref=e3576]
+                  - generic [ref=e3579]: $17.26
+              - cell [ref=e3580]:
+                - generic [ref=e3581]:
+                  - button [ref=e3582] [cursor=pointer]:
+                    - img [ref=e3583]
+                  - button [ref=e3585] [cursor=pointer]:
+                    - img [ref=e3586]
+            - row "Feb 7, 2026 Safeway Test Account Uncategorized $76.77" [ref=e3589]:
+              - cell "Feb 7, 2026" [ref=e3590]
+              - cell "Safeway Test Account" [ref=e3591]:
+                - generic [ref=e3592]:
+                  - paragraph [ref=e3593]: Safeway
+                  - paragraph [ref=e3594]: Test Account
+              - cell "Uncategorized" [ref=e3595]
+              - cell "$76.77" [ref=e3596]:
+                - generic [ref=e3597]:
+                  - img [ref=e3598]
+                  - generic [ref=e3601]: $76.77
+              - cell [ref=e3602]:
+                - generic [ref=e3603]:
+                  - button [ref=e3604] [cursor=pointer]:
+                    - img [ref=e3605]
+                  - button [ref=e3607] [cursor=pointer]:
+                    - img [ref=e3608]
+            - row "Feb 7, 2026 Lowes Test Account Uncategorized $173.41" [ref=e3611]:
+              - cell "Feb 7, 2026" [ref=e3612]
+              - cell "Lowes Test Account" [ref=e3613]:
+                - generic [ref=e3614]:
+                  - paragraph [ref=e3615]: Lowes
+                  - paragraph [ref=e3616]: Test Account
+              - cell "Uncategorized" [ref=e3617]
+              - cell "$173.41" [ref=e3618]:
+                - generic [ref=e3619]:
+                  - img [ref=e3620]
+                  - generic [ref=e3623]: $173.41
+              - cell [ref=e3624]:
+                - generic [ref=e3625]:
+                  - button [ref=e3626] [cursor=pointer]:
+                    - img [ref=e3627]
+                  - button [ref=e3629] [cursor=pointer]:
+                    - img [ref=e3630]
+            - row "Feb 7, 2026 Investment Transfer Test Account Uncategorized $574.33" [ref=e3633]:
+              - cell "Feb 7, 2026" [ref=e3634]
+              - cell "Investment Transfer Test Account" [ref=e3635]:
+                - generic [ref=e3636]:
+                  - paragraph [ref=e3637]: Investment Transfer
+                  - paragraph [ref=e3638]: Test Account
+              - cell "Uncategorized" [ref=e3639]
+              - cell "$574.33" [ref=e3640]:
+                - generic [ref=e3641]:
+                  - img [ref=e3642]
+                  - generic [ref=e3645]: $574.33
+              - cell [ref=e3646]:
+                - generic [ref=e3647]:
+                  - button [ref=e3648] [cursor=pointer]:
+                    - img [ref=e3649]
+                  - button [ref=e3651] [cursor=pointer]:
+                    - img [ref=e3652]
+            - row "Feb 6, 2026 Home Depot Test Account Uncategorized $72.80" [ref=e3655]:
+              - cell "Feb 6, 2026" [ref=e3656]
+              - cell "Home Depot Test Account" [ref=e3657]:
+                - generic [ref=e3658]:
+                  - paragraph [ref=e3659]: Home Depot
+                  - paragraph [ref=e3660]: Test Account
+              - cell "Uncategorized" [ref=e3661]
+              - cell "$72.80" [ref=e3662]:
+                - generic [ref=e3663]:
+                  - img [ref=e3664]
+                  - generic [ref=e3667]: $72.80
+              - cell [ref=e3668]:
+                - generic [ref=e3669]:
+                  - button [ref=e3670] [cursor=pointer]:
+                    - img [ref=e3671]
+                  - button [ref=e3673] [cursor=pointer]:
+                    - img [ref=e3674]
+            - row "Feb 6, 2026 Bowling Alley Test Account Uncategorized $52.62" [ref=e3677]:
+              - cell "Feb 6, 2026" [ref=e3678]
+              - cell "Bowling Alley Test Account" [ref=e3679]:
+                - generic [ref=e3680]:
+                  - paragraph [ref=e3681]: Bowling Alley
+                  - paragraph [ref=e3682]: Test Account
+              - cell "Uncategorized" [ref=e3683]
+              - cell "$52.62" [ref=e3684]:
+                - generic [ref=e3685]:
+                  - img [ref=e3686]
+                  - generic [ref=e3689]: $52.62
+              - cell [ref=e3690]:
+                - generic [ref=e3691]:
+                  - button [ref=e3692] [cursor=pointer]:
+                    - img [ref=e3693]
+                  - button [ref=e3695] [cursor=pointer]:
+                    - img [ref=e3696]
+            - row "Feb 6, 2026 Marriott Hotel Test Account Uncategorized $356.91" [ref=e3699]:
+              - cell "Feb 6, 2026" [ref=e3700]
+              - cell "Marriott Hotel Test Account" [ref=e3701]:
+                - generic [ref=e3702]:
+                  - paragraph [ref=e3703]: Marriott Hotel
+                  - paragraph [ref=e3704]: Test Account
+              - cell "Uncategorized" [ref=e3705]
+              - cell "$356.91" [ref=e3706]:
+                - generic [ref=e3707]:
+                  - img [ref=e3708]
+                  - generic [ref=e3711]: $356.91
+              - cell [ref=e3712]:
+                - generic [ref=e3713]:
+                  - button [ref=e3714] [cursor=pointer]:
+                    - img [ref=e3715]
+                  - button [ref=e3717] [cursor=pointer]:
+                    - img [ref=e3718]
+            - row "Feb 6, 2026 Bank Fee Test Account Uncategorized $10.87" [ref=e3721]:
+              - cell "Feb 6, 2026" [ref=e3722]
+              - cell "Bank Fee Test Account" [ref=e3723]:
+                - generic [ref=e3724]:
+                  - paragraph [ref=e3725]: Bank Fee
+                  - paragraph [ref=e3726]: Test Account
+              - cell "Uncategorized" [ref=e3727]
+              - cell "$10.87" [ref=e3728]:
+                - generic [ref=e3729]:
+                  - img [ref=e3730]
+                  - generic [ref=e3733]: $10.87
+              - cell [ref=e3734]:
+                - generic [ref=e3735]:
+                  - button [ref=e3736] [cursor=pointer]:
+                    - img [ref=e3737]
+                  - button [ref=e3739] [cursor=pointer]:
+                    - img [ref=e3740]
+            - row "Feb 6, 2026 Bank Fee Test Account Uncategorized $13.56" [ref=e3743]:
+              - cell "Feb 6, 2026" [ref=e3744]
+              - cell "Bank Fee Test Account" [ref=e3745]:
+                - generic [ref=e3746]:
+                  - paragraph [ref=e3747]: Bank Fee
+                  - paragraph [ref=e3748]: Test Account
+              - cell "Uncategorized" [ref=e3749]
+              - cell "$13.56" [ref=e3750]:
+                - generic [ref=e3751]:
+                  - img [ref=e3752]
+                  - generic [ref=e3755]: $13.56
+              - cell [ref=e3756]:
+                - generic [ref=e3757]:
+                  - button [ref=e3758] [cursor=pointer]:
+                    - img [ref=e3759]
+                  - button [ref=e3761] [cursor=pointer]:
+                    - img [ref=e3762]
+            - row "Feb 6, 2026 Credit Card Payment Test Account Uncategorized $1,424.34" [ref=e3765]:
+              - cell "Feb 6, 2026" [ref=e3766]
+              - cell "Credit Card Payment Test Account" [ref=e3767]:
+                - generic [ref=e3768]:
+                  - paragraph [ref=e3769]: Credit Card Payment
+                  - paragraph [ref=e3770]: Test Account
+              - cell "Uncategorized" [ref=e3771]
+              - cell "$1,424.34" [ref=e3772]:
+                - generic [ref=e3773]:
+                  - img [ref=e3774]
+                  - generic [ref=e3777]: $1,424.34
+              - cell [ref=e3778]:
+                - generic [ref=e3779]:
+                  - button [ref=e3780] [cursor=pointer]:
+                    - img [ref=e3781]
+                  - button [ref=e3783] [cursor=pointer]:
+                    - img [ref=e3784]
+            - row "Feb 5, 2026 Trader Joes Test Account Uncategorized $93.71" [ref=e3787]:
+              - cell "Feb 5, 2026" [ref=e3788]
+              - cell "Trader Joes Test Account" [ref=e3789]:
+                - generic [ref=e3790]:
+                  - paragraph [ref=e3791]: Trader Joes
+                  - paragraph [ref=e3792]: Test Account
+              - cell "Uncategorized" [ref=e3793]
+              - cell "$93.71" [ref=e3794]:
+                - generic [ref=e3795]:
+                  - img [ref=e3796]
+                  - generic [ref=e3799]: $93.71
+              - cell [ref=e3800]:
+                - generic [ref=e3801]:
+                  - button [ref=e3802] [cursor=pointer]:
+                    - img [ref=e3803]
+                  - button [ref=e3805] [cursor=pointer]:
+                    - img [ref=e3806]
+            - row "Feb 5, 2026 Dentist Test Account Uncategorized $280.51" [ref=e3809]:
+              - cell "Feb 5, 2026" [ref=e3810]
+              - cell "Dentist Test Account" [ref=e3811]:
+                - generic [ref=e3812]:
+                  - paragraph [ref=e3813]: Dentist
+                  - paragraph [ref=e3814]: Test Account
+              - cell "Uncategorized" [ref=e3815]
+              - cell "$280.51" [ref=e3816]:
+                - generic [ref=e3817]:
+                  - img [ref=e3818]
+                  - generic [ref=e3821]: $280.51
+              - cell [ref=e3822]:
+                - generic [ref=e3823]:
+                  - button [ref=e3824] [cursor=pointer]:
+                    - img [ref=e3825]
+                  - button [ref=e3827] [cursor=pointer]:
+                    - img [ref=e3828]
+            - row "Feb 5, 2026 Bowling Alley Test Account Uncategorized $37.23" [ref=e3831]:
+              - cell "Feb 5, 2026" [ref=e3832]
+              - cell "Bowling Alley Test Account" [ref=e3833]:
+                - generic [ref=e3834]:
+                  - paragraph [ref=e3835]: Bowling Alley
+                  - paragraph [ref=e3836]: Test Account
+              - cell "Uncategorized" [ref=e3837]
+              - cell "$37.23" [ref=e3838]:
+                - generic [ref=e3839]:
+                  - img [ref=e3840]
+                  - generic [ref=e3843]: $37.23
+              - cell [ref=e3844]:
+                - generic [ref=e3845]:
+                  - button [ref=e3846] [cursor=pointer]:
+                    - img [ref=e3847]
+                  - button [ref=e3849] [cursor=pointer]:
+                    - img [ref=e3850]
+            - row "Feb 5, 2026 Pizza Hut Test Account Uncategorized $24.05" [ref=e3853]:
+              - cell "Feb 5, 2026" [ref=e3854]
+              - cell "Pizza Hut Test Account" [ref=e3855]:
+                - generic [ref=e3856]:
+                  - paragraph [ref=e3857]: Pizza Hut
+                  - paragraph [ref=e3858]: Test Account
+              - cell "Uncategorized" [ref=e3859]
+              - cell "$24.05" [ref=e3860]:
+                - generic [ref=e3861]:
+                  - img [ref=e3862]
+                  - generic [ref=e3865]: $24.05
+              - cell [ref=e3866]:
+                - generic [ref=e3867]:
+                  - button [ref=e3868] [cursor=pointer]:
+                    - img [ref=e3869]
+                  - button [ref=e3871] [cursor=pointer]:
+                    - img [ref=e3872]
+            - row "Feb 4, 2026 Lowes Test Account Uncategorized $139.30" [ref=e3875]:
+              - cell "Feb 4, 2026" [ref=e3876]
+              - cell "Lowes Test Account" [ref=e3877]:
+                - generic [ref=e3878]:
+                  - paragraph [ref=e3879]: Lowes
+                  - paragraph [ref=e3880]: Test Account
+              - cell "Uncategorized" [ref=e3881]
+              - cell "$139.30" [ref=e3882]:
+                - generic [ref=e3883]:
+                  - img [ref=e3884]
+                  - generic [ref=e3887]: $139.30
+              - cell [ref=e3888]:
+                - generic [ref=e3889]:
+                  - button [ref=e3890] [cursor=pointer]:
+                    - img [ref=e3891]
+                  - button [ref=e3893] [cursor=pointer]:
+                    - img [ref=e3894]
+            - row "Feb 4, 2026 Nike Store Test Account Uncategorized $127.19" [ref=e3897]:
+              - cell "Feb 4, 2026" [ref=e3898]
+              - cell "Nike Store Test Account" [ref=e3899]:
+                - generic [ref=e3900]:
+                  - paragraph [ref=e3901]: Nike Store
+                  - paragraph [ref=e3902]: Test Account
+              - cell "Uncategorized" [ref=e3903]
+              - cell "$127.19" [ref=e3904]:
+                - generic [ref=e3905]:
+                  - img [ref=e3906]
+                  - generic [ref=e3909]: $127.19
+              - cell [ref=e3910]:
+                - generic [ref=e3911]:
+                  - button [ref=e3912] [cursor=pointer]:
+                    - img [ref=e3913]
+                  - button [ref=e3915] [cursor=pointer]:
+                    - img [ref=e3916]
+            - row "Feb 4, 2026 Costco Test Account Uncategorized $259.09" [ref=e3919]:
+              - cell "Feb 4, 2026" [ref=e3920]
+              - cell "Costco Test Account" [ref=e3921]:
+                - generic [ref=e3922]:
+                  - paragraph [ref=e3923]: Costco
+                  - paragraph [ref=e3924]: Test Account
+              - cell "Uncategorized" [ref=e3925]
+              - cell "$259.09" [ref=e3926]:
+                - generic [ref=e3927]:
+                  - img [ref=e3928]
+                  - generic [ref=e3931]: $259.09
+              - cell [ref=e3932]:
+                - generic [ref=e3933]:
+                  - button [ref=e3934] [cursor=pointer]:
+                    - img [ref=e3935]
+                  - button [ref=e3937] [cursor=pointer]:
+                    - img [ref=e3938]
+            - row "Feb 4, 2026 Chipotle Test Account Uncategorized $12.82" [ref=e3941]:
+              - cell "Feb 4, 2026" [ref=e3942]
+              - cell "Chipotle Test Account" [ref=e3943]:
+                - generic [ref=e3944]:
+                  - paragraph [ref=e3945]: Chipotle
+                  - paragraph [ref=e3946]: Test Account
+              - cell "Uncategorized" [ref=e3947]
+              - cell "$12.82" [ref=e3948]:
+                - generic [ref=e3949]:
+                  - img [ref=e3950]
+                  - generic [ref=e3953]: $12.82
+              - cell [ref=e3954]:
+                - generic [ref=e3955]:
+                  - button [ref=e3956] [cursor=pointer]:
+                    - img [ref=e3957]
+                  - button [ref=e3959] [cursor=pointer]:
+                    - img [ref=e3960]
+            - row "Feb 4, 2026 Walgreens Test Account Uncategorized $29.31" [ref=e3963]:
+              - cell "Feb 4, 2026" [ref=e3964]
+              - cell "Walgreens Test Account" [ref=e3965]:
+                - generic [ref=e3966]:
+                  - paragraph [ref=e3967]: Walgreens
+                  - paragraph [ref=e3968]: Test Account
+              - cell "Uncategorized" [ref=e3969]
+              - cell "$29.31" [ref=e3970]:
+                - generic [ref=e3971]:
+                  - img [ref=e3972]
+                  - generic [ref=e3975]: $29.31
+              - cell [ref=e3976]:
+                - generic [ref=e3977]:
+                  - button [ref=e3978] [cursor=pointer]:
+                    - img [ref=e3979]
+                  - button [ref=e3981] [cursor=pointer]:
+                    - img [ref=e3982]
+            - row "Feb 4, 2026 Nike Store Test Account Uncategorized $148.28" [ref=e3985]:
+              - cell "Feb 4, 2026" [ref=e3986]
+              - cell "Nike Store Test Account" [ref=e3987]:
+                - generic [ref=e3988]:
+                  - paragraph [ref=e3989]: Nike Store
+                  - paragraph [ref=e3990]: Test Account
+              - cell "Uncategorized" [ref=e3991]
+              - cell "$148.28" [ref=e3992]:
+                - generic [ref=e3993]:
+                  - img [ref=e3994]
+                  - generic [ref=e3997]: $148.28
+              - cell [ref=e3998]:
+                - generic [ref=e3999]:
+                  - button [ref=e4000] [cursor=pointer]:
+                    - img [ref=e4001]
+                  - button [ref=e4003] [cursor=pointer]:
+                    - img [ref=e4004]
+            - row "Feb 4, 2026 Tax Refund Test Account Uncategorized $850.00" [ref=e4007]:
+              - cell "Feb 4, 2026" [ref=e4008]
+              - cell "Tax Refund Test Account" [ref=e4009]:
+                - generic [ref=e4010]:
+                  - paragraph [ref=e4011]: Tax Refund
+                  - paragraph [ref=e4012]: Test Account
+              - cell "Uncategorized" [ref=e4013]
+              - cell "$850.00" [ref=e4014]:
+                - generic [ref=e4015]:
+                  - img [ref=e4016]
+                  - generic [ref=e4019]: $850.00
+              - cell [ref=e4020]:
+                - generic [ref=e4021]:
+                  - button [ref=e4022] [cursor=pointer]:
+                    - img [ref=e4023]
+                  - button [ref=e4025] [cursor=pointer]:
+                    - img [ref=e4026]
+            - row "Feb 4, 2026 Costco Test Account Uncategorized $241.86" [ref=e4029]:
+              - cell "Feb 4, 2026" [ref=e4030]
+              - cell "Costco Test Account" [ref=e4031]:
+                - generic [ref=e4032]:
+                  - paragraph [ref=e4033]: Costco
+                  - paragraph [ref=e4034]: Test Account
+              - cell "Uncategorized" [ref=e4035]
+              - cell "$241.86" [ref=e4036]:
+                - generic [ref=e4037]:
+                  - img [ref=e4038]
+                  - generic [ref=e4041]: $241.86
+              - cell [ref=e4042]:
+                - generic [ref=e4043]:
+                  - button [ref=e4044] [cursor=pointer]:
+                    - img [ref=e4045]
+                  - button [ref=e4047] [cursor=pointer]:
+                    - img [ref=e4048]
+            - row "Feb 3, 2026 Bowling Alley Test Account Uncategorized $36.94" [ref=e4051]:
+              - cell "Feb 3, 2026" [ref=e4052]
+              - cell "Bowling Alley Test Account" [ref=e4053]:
+                - generic [ref=e4054]:
+                  - paragraph [ref=e4055]: Bowling Alley
+                  - paragraph [ref=e4056]: Test Account
+              - cell "Uncategorized" [ref=e4057]
+              - cell "$36.94" [ref=e4058]:
+                - generic [ref=e4059]:
+                  - img [ref=e4060]
+                  - generic [ref=e4063]: $36.94
+              - cell [ref=e4064]:
+                - generic [ref=e4065]:
+                  - button [ref=e4066] [cursor=pointer]:
+                    - img [ref=e4067]
+                  - button [ref=e4069] [cursor=pointer]:
+                    - img [ref=e4070]
+            - row "Feb 3, 2026 Chipotle Test Account Uncategorized $13.24" [ref=e4073]:
+              - cell "Feb 3, 2026" [ref=e4074]
+              - cell "Chipotle Test Account" [ref=e4075]:
+                - generic [ref=e4076]:
+                  - paragraph [ref=e4077]: Chipotle
+                  - paragraph [ref=e4078]: Test Account
+              - cell "Uncategorized" [ref=e4079]
+              - cell "$13.24" [ref=e4080]:
+                - generic [ref=e4081]:
+                  - img [ref=e4082]
+                  - generic [ref=e4085]: $13.24
+              - cell [ref=e4086]:
+                - generic [ref=e4087]:
+                  - button [ref=e4088] [cursor=pointer]:
+                    - img [ref=e4089]
+                  - button [ref=e4091] [cursor=pointer]:
+                    - img [ref=e4092]
+            - row "Feb 3, 2026 McDonalds Test Account Uncategorized $10.91" [ref=e4095]:
+              - cell "Feb 3, 2026" [ref=e4096]
+              - cell "McDonalds Test Account" [ref=e4097]:
+                - generic [ref=e4098]:
+                  - paragraph [ref=e4099]: McDonalds
+                  - paragraph [ref=e4100]: Test Account
+              - cell "Uncategorized" [ref=e4101]
+              - cell "$10.91" [ref=e4102]:
+                - generic [ref=e4103]:
+                  - img [ref=e4104]
+                  - generic [ref=e4107]: $10.91
+              - cell [ref=e4108]:
+                - generic [ref=e4109]:
+                  - button [ref=e4110] [cursor=pointer]:
+                    - img [ref=e4111]
+                  - button [ref=e4113] [cursor=pointer]:
+                    - img [ref=e4114]
+            - row "Feb 2, 2026 Freelance Client Test Account Uncategorized $1,250.00" [ref=e4117]:
+              - cell "Feb 2, 2026" [ref=e4118]
+              - cell "Freelance Client Test Account" [ref=e4119]:
+                - generic [ref=e4120]:
+                  - paragraph [ref=e4121]: Freelance Client
+                  - paragraph [ref=e4122]: Test Account
+              - cell "Uncategorized" [ref=e4123]
+              - cell "$1,250.00" [ref=e4124]:
+                - generic [ref=e4125]:
+                  - img [ref=e4126]
+                  - generic [ref=e4129]: $1,250.00
+              - cell [ref=e4130]:
+                - generic [ref=e4131]:
+                  - button [ref=e4132] [cursor=pointer]:
+                    - img [ref=e4133]
+                  - button [ref=e4135] [cursor=pointer]:
+                    - img [ref=e4136]
+            - row "Feb 2, 2026 Steam Games Test Account Uncategorized $48.15" [ref=e4139]:
+              - cell "Feb 2, 2026" [ref=e4140]
+              - cell "Steam Games Test Account" [ref=e4141]:
+                - generic [ref=e4142]:
+                  - paragraph [ref=e4143]: Steam Games
+                  - paragraph [ref=e4144]: Test Account
+              - cell "Uncategorized" [ref=e4145]
+              - cell "$48.15" [ref=e4146]:
+                - generic [ref=e4147]:
+                  - img [ref=e4148]
+                  - generic [ref=e4151]: $48.15
+              - cell [ref=e4152]:
+                - generic [ref=e4153]:
+                  - button [ref=e4154] [cursor=pointer]:
+                    - img [ref=e4155]
+                  - button [ref=e4157] [cursor=pointer]:
+                    - img [ref=e4158]
+            - row "Feb 2, 2026 Tax Refund Test Account Uncategorized $850.00" [ref=e4161]:
+              - cell "Feb 2, 2026" [ref=e4162]
+              - cell "Tax Refund Test Account" [ref=e4163]:
+                - generic [ref=e4164]:
+                  - paragraph [ref=e4165]: Tax Refund
+                  - paragraph [ref=e4166]: Test Account
+              - cell "Uncategorized" [ref=e4167]
+              - cell "$850.00" [ref=e4168]:
+                - generic [ref=e4169]:
+                  - img [ref=e4170]
+                  - generic [ref=e4173]: $850.00
+              - cell [ref=e4174]:
+                - generic [ref=e4175]:
+                  - button [ref=e4176] [cursor=pointer]:
+                    - img [ref=e4177]
+                  - button [ref=e4179] [cursor=pointer]:
+                    - img [ref=e4180]
+            - row "Feb 2, 2026 Chevron Test Account Uncategorized $51.40" [ref=e4183]:
+              - cell "Feb 2, 2026" [ref=e4184]
+              - cell "Chevron Test Account" [ref=e4185]:
+                - generic [ref=e4186]:
+                  - paragraph [ref=e4187]: Chevron
+                  - paragraph [ref=e4188]: Test Account
+              - cell "Uncategorized" [ref=e4189]
+              - cell "$51.40" [ref=e4190]:
+                - generic [ref=e4191]:
+                  - img [ref=e4192]
+                  - generic [ref=e4195]: $51.40
+              - cell [ref=e4196]:
+                - generic [ref=e4197]:
+                  - button [ref=e4198] [cursor=pointer]:
+                    - img [ref=e4199]
+                  - button [ref=e4201] [cursor=pointer]:
+                    - img [ref=e4202]
+            - row "Feb 2, 2026 Gym Membership Test Account Uncategorized $52.24" [ref=e4205]:
+              - cell "Feb 2, 2026" [ref=e4206]
+              - cell "Gym Membership Test Account" [ref=e4207]:
+                - generic [ref=e4208]:
+                  - paragraph [ref=e4209]: Gym Membership
+                  - paragraph [ref=e4210]: Test Account
+              - cell "Uncategorized" [ref=e4211]
+              - cell "$52.24" [ref=e4212]:
+                - generic [ref=e4213]:
+                  - img [ref=e4214]
+                  - generic [ref=e4217]: $52.24
+              - cell [ref=e4218]:
+                - generic [ref=e4219]:
+                  - button [ref=e4220] [cursor=pointer]:
+                    - img [ref=e4221]
+                  - button [ref=e4223] [cursor=pointer]:
+                    - img [ref=e4224]
+            - row "Feb 2, 2026 Gym Membership Test Account Uncategorized $47.51" [ref=e4227]:
+              - cell "Feb 2, 2026" [ref=e4228]
+              - cell "Gym Membership Test Account" [ref=e4229]:
+                - generic [ref=e4230]:
+                  - paragraph [ref=e4231]: Gym Membership
+                  - paragraph [ref=e4232]: Test Account
+              - cell "Uncategorized" [ref=e4233]
+              - cell "$47.51" [ref=e4234]:
+                - generic [ref=e4235]:
+                  - img [ref=e4236]
+                  - generic [ref=e4239]: $47.51
+              - cell [ref=e4240]:
+                - generic [ref=e4241]:
+                  - button [ref=e4242] [cursor=pointer]:
+                    - img [ref=e4243]
+                  - button [ref=e4245] [cursor=pointer]:
+                    - img [ref=e4246]
+            - row "Feb 2, 2026 Bank Fee Test Account Uncategorized $12.64" [ref=e4249]:
+              - cell "Feb 2, 2026" [ref=e4250]
+              - cell "Bank Fee Test Account" [ref=e4251]:
+                - generic [ref=e4252]:
+                  - paragraph [ref=e4253]: Bank Fee
+                  - paragraph [ref=e4254]: Test Account
+              - cell "Uncategorized" [ref=e4255]
+              - cell "$12.64" [ref=e4256]:
+                - generic [ref=e4257]:
+                  - img [ref=e4258]
+                  - generic [ref=e4261]: $12.64
+              - cell [ref=e4262]:
+                - generic [ref=e4263]:
+                  - button [ref=e4264] [cursor=pointer]:
+                    - img [ref=e4265]
+                  - button [ref=e4267] [cursor=pointer]:
+                    - img [ref=e4268]
+            - row "Feb 2, 2026 Starbucks Test Account Uncategorized $4.71" [ref=e4271]:
+              - cell "Feb 2, 2026" [ref=e4272]
+              - cell "Starbucks Test Account" [ref=e4273]:
+                - generic [ref=e4274]:
+                  - paragraph [ref=e4275]: Starbucks
+                  - paragraph [ref=e4276]: Test Account
+              - cell "Uncategorized" [ref=e4277]
+              - cell "$4.71" [ref=e4278]:
+                - generic [ref=e4279]:
+                  - img [ref=e4280]
+                  - generic [ref=e4283]: $4.71
+              - cell [ref=e4284]:
+                - generic [ref=e4285]:
+                  - button [ref=e4286] [cursor=pointer]:
+                    - img [ref=e4287]
+                  - button [ref=e4289] [cursor=pointer]:
+                    - img [ref=e4290]
+            - row "Feb 1, 2026 Spotify Test Account Uncategorized $8.37" [ref=e4293]:
+              - cell "Feb 1, 2026" [ref=e4294]
+              - cell "Spotify Test Account" [ref=e4295]:
+                - generic [ref=e4296]:
+                  - paragraph [ref=e4297]: Spotify
+                  - paragraph [ref=e4298]: Test Account
+              - cell "Uncategorized" [ref=e4299]
+              - cell "$8.37" [ref=e4300]:
+                - generic [ref=e4301]:
+                  - img [ref=e4302]
+                  - generic [ref=e4305]: $8.37
+              - cell [ref=e4306]:
+                - generic [ref=e4307]:
+                  - button [ref=e4308] [cursor=pointer]:
+                    - img [ref=e4309]
+                  - button [ref=e4311] [cursor=pointer]:
+                    - img [ref=e4312]
+            - row "Feb 1, 2026 Nike Store Test Account Uncategorized $115.17" [ref=e4315]:
+              - cell "Feb 1, 2026" [ref=e4316]
+              - cell "Nike Store Test Account" [ref=e4317]:
+                - generic [ref=e4318]:
+                  - paragraph [ref=e4319]: Nike Store
+                  - paragraph [ref=e4320]: Test Account
+              - cell "Uncategorized" [ref=e4321]
+              - cell "$115.17" [ref=e4322]:
+                - generic [ref=e4323]:
+                  - img [ref=e4324]
+                  - generic [ref=e4327]: $115.17
+              - cell [ref=e4328]:
+                - generic [ref=e4329]:
+                  - button [ref=e4330] [cursor=pointer]:
+                    - img [ref=e4331]
+                  - button [ref=e4333] [cursor=pointer]:
+                    - img [ref=e4334]
+            - row "Feb 1, 2026 Shell Gas Station Test Account Uncategorized $45.95" [ref=e4337]:
+              - cell "Feb 1, 2026" [ref=e4338]
+              - cell "Shell Gas Station Test Account" [ref=e4339]:
+                - generic [ref=e4340]:
+                  - paragraph [ref=e4341]: Shell Gas Station
+                  - paragraph [ref=e4342]: Test Account
+              - cell "Uncategorized" [ref=e4343]
+              - cell "$45.95" [ref=e4344]:
+                - generic [ref=e4345]:
+                  - img [ref=e4346]
+                  - generic [ref=e4349]: $45.95
+              - cell [ref=e4350]:
+                - generic [ref=e4351]:
+                  - button [ref=e4352] [cursor=pointer]:
+                    - img [ref=e4353]
+                  - button [ref=e4355] [cursor=pointer]:
+                    - img [ref=e4356]
+            - row "Feb 1, 2026 Enterprise Rent-A-Car Test Account Uncategorized $161.23" [ref=e4359]:
+              - cell "Feb 1, 2026" [ref=e4360]
+              - cell "Enterprise Rent-A-Car Test Account" [ref=e4361]:
+                - generic [ref=e4362]:
+                  - paragraph [ref=e4363]: Enterprise Rent-A-Car
+                  - paragraph [ref=e4364]: Test Account
+              - cell "Uncategorized" [ref=e4365]
+              - cell "$161.23" [ref=e4366]:
+                - generic [ref=e4367]:
+                  - img [ref=e4368]
+                  - generic [ref=e4371]: $161.23
+              - cell [ref=e4372]:
+                - generic [ref=e4373]:
+                  - button [ref=e4374] [cursor=pointer]:
+                    - img [ref=e4375]
+                  - button [ref=e4377] [cursor=pointer]:
+                    - img [ref=e4378]
+            - row "Feb 1, 2026 Pizza Hut Test Account Uncategorized $25.61" [ref=e4381]:
+              - cell "Feb 1, 2026" [ref=e4382]
+              - cell "Pizza Hut Test Account" [ref=e4383]:
+                - generic [ref=e4384]:
+                  - paragraph [ref=e4385]: Pizza Hut
+                  - paragraph [ref=e4386]: Test Account
+              - cell "Uncategorized" [ref=e4387]
+              - cell "$25.61" [ref=e4388]:
+                - generic [ref=e4389]:
+                  - img [ref=e4390]
+                  - generic [ref=e4393]: $25.61
+              - cell [ref=e4394]:
+                - generic [ref=e4395]:
+                  - button [ref=e4396] [cursor=pointer]:
+                    - img [ref=e4397]
+                  - button [ref=e4399] [cursor=pointer]:
+                    - img [ref=e4400]
+            - row "Feb 1, 2026 Costco Test Account Uncategorized $254.16" [ref=e4403]:
+              - cell "Feb 1, 2026" [ref=e4404]
+              - cell "Costco Test Account" [ref=e4405]:
+                - generic [ref=e4406]:
+                  - paragraph [ref=e4407]: Costco
+                  - paragraph [ref=e4408]: Test Account
+              - cell "Uncategorized" [ref=e4409]
+              - cell "$254.16" [ref=e4410]:
+                - generic [ref=e4411]:
+                  - img [ref=e4412]
+                  - generic [ref=e4415]: $254.16
+              - cell [ref=e4416]:
+                - generic [ref=e4417]:
+                  - button [ref=e4418] [cursor=pointer]:
+                    - img [ref=e4419]
+                  - button [ref=e4421] [cursor=pointer]:
+                    - img [ref=e4422]
+            - row "Feb 1, 2026 Lyft Test Account Uncategorized $16.62" [ref=e4425]:
+              - cell "Feb 1, 2026" [ref=e4426]
+              - cell "Lyft Test Account" [ref=e4427]:
+                - generic [ref=e4428]:
+                  - paragraph [ref=e4429]: Lyft
+                  - paragraph [ref=e4430]: Test Account
+              - cell "Uncategorized" [ref=e4431]
+              - cell "$16.62" [ref=e4432]:
+                - generic [ref=e4433]:
+                  - img [ref=e4434]
+                  - generic [ref=e4437]: $16.62
+              - cell [ref=e4438]:
+                - generic [ref=e4439]:
+                  - button [ref=e4440] [cursor=pointer]:
+                    - img [ref=e4441]
+                  - button [ref=e4443] [cursor=pointer]:
+                    - img [ref=e4444]
+            - row "Jan 31, 2026 Investment Transfer Test Account Uncategorized $587.52" [ref=e4447]:
+              - cell "Jan 31, 2026" [ref=e4448]
+              - cell "Investment Transfer Test Account" [ref=e4449]:
+                - generic [ref=e4450]:
+                  - paragraph [ref=e4451]: Investment Transfer
+                  - paragraph [ref=e4452]: Test Account
+              - cell "Uncategorized" [ref=e4453]
+              - cell "$587.52" [ref=e4454]:
+                - generic [ref=e4455]:
+                  - img [ref=e4456]
+                  - generic [ref=e4459]: $587.52
+              - cell [ref=e4460]:
+                - generic [ref=e4461]:
+                  - button [ref=e4462] [cursor=pointer]:
+                    - img [ref=e4463]
+                  - button [ref=e4465] [cursor=pointer]:
+                    - img [ref=e4466]
+            - row "Jan 31, 2026 Lowes Test Account Uncategorized $142.62" [ref=e4469]:
+              - cell "Jan 31, 2026" [ref=e4470]
+              - cell "Lowes Test Account" [ref=e4471]:
+                - generic [ref=e4472]:
+                  - paragraph [ref=e4473]: Lowes
+                  - paragraph [ref=e4474]: Test Account
+              - cell "Uncategorized" [ref=e4475]
+              - cell "$142.62" [ref=e4476]:
+                - generic [ref=e4477]:
+                  - img [ref=e4478]
+                  - generic [ref=e4481]: $142.62
+              - cell [ref=e4482]:
+                - generic [ref=e4483]:
+                  - button [ref=e4484] [cursor=pointer]:
+                    - img [ref=e4485]
+                  - button [ref=e4487] [cursor=pointer]:
+                    - img [ref=e4488]
+            - row "Jan 31, 2026 Walmart Test Account Uncategorized $243.02" [ref=e4491]:
+              - cell "Jan 31, 2026" [ref=e4492]
+              - cell "Walmart Test Account" [ref=e4493]:
+                - generic [ref=e4494]:
+                  - paragraph [ref=e4495]: Walmart
+                  - paragraph [ref=e4496]: Test Account
+              - cell "Uncategorized" [ref=e4497]
+              - cell "$243.02" [ref=e4498]:
+                - generic [ref=e4499]:
+                  - img [ref=e4500]
+                  - generic [ref=e4503]: $243.02
+              - cell [ref=e4504]:
+                - generic [ref=e4505]:
+                  - button [ref=e4506] [cursor=pointer]:
+                    - img [ref=e4507]
+                  - button [ref=e4509] [cursor=pointer]:
+                    - img [ref=e4510]
+            - row "Jan 31, 2026 Steam Games Test Account Uncategorized $70.47" [ref=e4513]:
+              - cell "Jan 31, 2026" [ref=e4514]
+              - cell "Steam Games Test Account" [ref=e4515]:
+                - generic [ref=e4516]:
+                  - paragraph [ref=e4517]: Steam Games
+                  - paragraph [ref=e4518]: Test Account
+              - cell "Uncategorized" [ref=e4519]
+              - cell "$70.47" [ref=e4520]:
+                - generic [ref=e4521]:
+                  - img [ref=e4522]
+                  - generic [ref=e4525]: $70.47
+              - cell [ref=e4526]:
+                - generic [ref=e4527]:
+                  - button [ref=e4528] [cursor=pointer]:
+                    - img [ref=e4529]
+                  - button [ref=e4531] [cursor=pointer]:
+                    - img [ref=e4532]
+            - row "Jan 31, 2026 Movie Theater Test Account Uncategorized $27.00" [ref=e4535]:
+              - cell "Jan 31, 2026" [ref=e4536]
+              - cell "Movie Theater Test Account" [ref=e4537]:
+                - generic [ref=e4538]:
+                  - paragraph [ref=e4539]: Movie Theater
+                  - paragraph [ref=e4540]: Test Account
+              - cell "Uncategorized" [ref=e4541]
+              - cell "$27.00" [ref=e4542]:
+                - generic [ref=e4543]:
+                  - img [ref=e4544]
+                  - generic [ref=e4547]: $27.00
+              - cell [ref=e4548]:
+                - generic [ref=e4549]:
+                  - button [ref=e4550] [cursor=pointer]:
+                    - img [ref=e4551]
+                  - button [ref=e4553] [cursor=pointer]:
+                    - img [ref=e4554]
+            - row "Jan 31, 2026 Credit Card Payment Test Account Uncategorized $1,680.63" [ref=e4557]:
+              - cell "Jan 31, 2026" [ref=e4558]
+              - cell "Credit Card Payment Test Account" [ref=e4559]:
+                - generic [ref=e4560]:
+                  - paragraph [ref=e4561]: Credit Card Payment
+                  - paragraph [ref=e4562]: Test Account
+              - cell "Uncategorized" [ref=e4563]
+              - cell "$1,680.63" [ref=e4564]:
+                - generic [ref=e4565]:
+                  - img [ref=e4566]
+                  - generic [ref=e4569]: $1,680.63
+              - cell [ref=e4570]:
+                - generic [ref=e4571]:
+                  - button [ref=e4572] [cursor=pointer]:
+                    - img [ref=e4573]
+                  - button [ref=e4575] [cursor=pointer]:
+                    - img [ref=e4576]
+            - row "Jan 31, 2026 Enterprise Rent-A-Car Test Account Uncategorized $224.28" [ref=e4579]:
+              - cell "Jan 31, 2026" [ref=e4580]
+              - cell "Enterprise Rent-A-Car Test Account" [ref=e4581]:
+                - generic [ref=e4582]:
+                  - paragraph [ref=e4583]: Enterprise Rent-A-Car
+                  - paragraph [ref=e4584]: Test Account
+              - cell "Uncategorized" [ref=e4585]
+              - cell "$224.28" [ref=e4586]:
+                - generic [ref=e4587]:
+                  - img [ref=e4588]
+                  - generic [ref=e4591]: $224.28
+              - cell [ref=e4592]:
+                - generic [ref=e4593]:
+                  - button [ref=e4594] [cursor=pointer]:
+                    - img [ref=e4595]
+                  - button [ref=e4597] [cursor=pointer]:
+                    - img [ref=e4598]
+            - row "Jan 31, 2026 Steam Games Test Account Uncategorized $66.82" [ref=e4601]:
+              - cell "Jan 31, 2026" [ref=e4602]
+              - cell "Steam Games Test Account" [ref=e4603]:
+                - generic [ref=e4604]:
+                  - paragraph [ref=e4605]: Steam Games
+                  - paragraph [ref=e4606]: Test Account
+              - cell "Uncategorized" [ref=e4607]
+              - cell "$66.82" [ref=e4608]:
+                - generic [ref=e4609]:
+                  - img [ref=e4610]
+                  - generic [ref=e4613]: $66.82
+              - cell [ref=e4614]:
+                - generic [ref=e4615]:
+                  - button [ref=e4616] [cursor=pointer]:
+                    - img [ref=e4617]
+                  - button [ref=e4619] [cursor=pointer]:
+                    - img [ref=e4620]
+            - row "Jan 30, 2026 Bank Fee Test Account Uncategorized $13.93" [ref=e4623]:
+              - cell "Jan 30, 2026" [ref=e4624]
+              - cell "Bank Fee Test Account" [ref=e4625]:
+                - generic [ref=e4626]:
+                  - paragraph [ref=e4627]: Bank Fee
+                  - paragraph [ref=e4628]: Test Account
+              - cell "Uncategorized" [ref=e4629]
+              - cell "$13.93" [ref=e4630]:
+                - generic [ref=e4631]:
+                  - img [ref=e4632]
+                  - generic [ref=e4635]: $13.93
+              - cell [ref=e4636]:
+                - generic [ref=e4637]:
+                  - button [ref=e4638] [cursor=pointer]:
+                    - img [ref=e4639]
+                  - button [ref=e4641] [cursor=pointer]:
+                    - img [ref=e4642]
+            - row "Jan 30, 2026 McDonalds Test Account Uncategorized $14.80" [ref=e4645]:
+              - cell "Jan 30, 2026" [ref=e4646]
+              - cell "McDonalds Test Account" [ref=e4647]:
+                - generic [ref=e4648]:
+                  - paragraph [ref=e4649]: McDonalds
+                  - paragraph [ref=e4650]: Test Account
+              - cell "Uncategorized" [ref=e4651]
+              - cell "$14.80" [ref=e4652]:
+                - generic [ref=e4653]:
+                  - img [ref=e4654]
+                  - generic [ref=e4657]: $14.80
+              - cell [ref=e4658]:
+                - generic [ref=e4659]:
+                  - button [ref=e4660] [cursor=pointer]:
+                    - img [ref=e4661]
+                  - button [ref=e4663] [cursor=pointer]:
+                    - img [ref=e4664]
+            - row "Jan 30, 2026 Marriott Hotel Test Account Uncategorized $368.49" [ref=e4667]:
+              - cell "Jan 30, 2026" [ref=e4668]
+              - cell "Marriott Hotel Test Account" [ref=e4669]:
+                - generic [ref=e4670]:
+                  - paragraph [ref=e4671]: Marriott Hotel
+                  - paragraph [ref=e4672]: Test Account
+              - cell "Uncategorized" [ref=e4673]
+              - cell "$368.49" [ref=e4674]:
+                - generic [ref=e4675]:
+                  - img [ref=e4676]
+                  - generic [ref=e4679]: $368.49
+              - cell [ref=e4680]:
+                - generic [ref=e4681]:
+                  - button [ref=e4682] [cursor=pointer]:
+                    - img [ref=e4683]
+                  - button [ref=e4685] [cursor=pointer]:
+                    - img [ref=e4686]
+            - row "Jan 30, 2026 Netflix Test Account Uncategorized $15.04" [ref=e4689]:
+              - cell "Jan 30, 2026" [ref=e4690]
+              - cell "Netflix Test Account" [ref=e4691]:
+                - generic [ref=e4692]:
+                  - paragraph [ref=e4693]: Netflix
+                  - paragraph [ref=e4694]: Test Account
+              - cell "Uncategorized" [ref=e4695]
+              - cell "$15.04" [ref=e4696]:
+                - generic [ref=e4697]:
+                  - img [ref=e4698]
+                  - generic [ref=e4701]: $15.04
+              - cell [ref=e4702]:
+                - generic [ref=e4703]:
+                  - button [ref=e4704] [cursor=pointer]:
+                    - img [ref=e4705]
+                  - button [ref=e4707] [cursor=pointer]:
+                    - img [ref=e4708]
+            - row "Jan 30, 2026 Whole Foods Market Test Account Uncategorized $139.61" [ref=e4711]:
+              - cell "Jan 30, 2026" [ref=e4712]
+              - cell "Whole Foods Market Test Account" [ref=e4713]:
+                - generic [ref=e4714]:
+                  - paragraph [ref=e4715]: Whole Foods Market
+                  - paragraph [ref=e4716]: Test Account
+              - cell "Uncategorized" [ref=e4717]
+              - cell "$139.61" [ref=e4718]:
+                - generic [ref=e4719]:
+                  - img [ref=e4720]
+                  - generic [ref=e4723]: $139.61
+              - cell [ref=e4724]:
+                - generic [ref=e4725]:
+                  - button [ref=e4726] [cursor=pointer]:
+                    - img [ref=e4727]
+                  - button [ref=e4729] [cursor=pointer]:
+                    - img [ref=e4730]
+            - row "Jan 29, 2026 Sushi Place Test Account Uncategorized $53.63" [ref=e4733]:
+              - cell "Jan 29, 2026" [ref=e4734]
+              - cell "Sushi Place Test Account" [ref=e4735]:
+                - generic [ref=e4736]:
+                  - paragraph [ref=e4737]: Sushi Place
+                  - paragraph [ref=e4738]: Test Account
+              - cell "Uncategorized" [ref=e4739]
+              - cell "$53.63" [ref=e4740]:
+                - generic [ref=e4741]:
+                  - img [ref=e4742]
+                  - generic [ref=e4745]: $53.63
+              - cell [ref=e4746]:
+                - generic [ref=e4747]:
+                  - button [ref=e4748] [cursor=pointer]:
+                    - img [ref=e4749]
+                  - button [ref=e4751] [cursor=pointer]:
+                    - img [ref=e4752]
+            - row "Jan 29, 2026 Spotify Test Account Uncategorized $8.72" [ref=e4755]:
+              - cell "Jan 29, 2026" [ref=e4756]
+              - cell "Spotify Test Account" [ref=e4757]:
+                - generic [ref=e4758]:
+                  - paragraph [ref=e4759]: Spotify
+                  - paragraph [ref=e4760]: Test Account
+              - cell "Uncategorized" [ref=e4761]
+              - cell "$8.72" [ref=e4762]:
+                - generic [ref=e4763]:
+                  - img [ref=e4764]
+                  - generic [ref=e4767]: $8.72
+              - cell [ref=e4768]:
+                - generic [ref=e4769]:
+                  - button [ref=e4770] [cursor=pointer]:
+                    - img [ref=e4771]
+                  - button [ref=e4773] [cursor=pointer]:
+                    - img [ref=e4774]
+            - row "Jan 29, 2026 Water Dept Test Account Uncategorized $53.61" [ref=e4777]:
+              - cell "Jan 29, 2026" [ref=e4778]
+              - cell "Water Dept Test Account" [ref=e4779]:
+                - generic [ref=e4780]:
+                  - paragraph [ref=e4781]: Water Dept
+                  - paragraph [ref=e4782]: Test Account
+              - cell "Uncategorized" [ref=e4783]
+              - cell "$53.61" [ref=e4784]:
+                - generic [ref=e4785]:
+                  - img [ref=e4786]
+                  - generic [ref=e4789]: $53.61
+              - cell [ref=e4790]:
+                - generic [ref=e4791]:
+                  - button [ref=e4792] [cursor=pointer]:
+                    - img [ref=e4793]
+                  - button [ref=e4795] [cursor=pointer]:
+                    - img [ref=e4796]
+            - row "Jan 29, 2026 Safeway Test Account Uncategorized $59.64" [ref=e4799]:
+              - cell "Jan 29, 2026" [ref=e4800]
+              - cell "Safeway Test Account" [ref=e4801]:
+                - generic [ref=e4802]:
+                  - paragraph [ref=e4803]: Safeway
+                  - paragraph [ref=e4804]: Test Account
+              - cell "Uncategorized" [ref=e4805]
+              - cell "$59.64" [ref=e4806]:
+                - generic [ref=e4807]:
+                  - img [ref=e4808]
+                  - generic [ref=e4811]: $59.64
+              - cell [ref=e4812]:
+                - generic [ref=e4813]:
+                  - button [ref=e4814] [cursor=pointer]:
+                    - img [ref=e4815]
+                  - button [ref=e4817] [cursor=pointer]:
+                    - img [ref=e4818]
+            - row "Jan 29, 2026 Starbucks Test Account Uncategorized $5.91" [ref=e4821]:
+              - cell "Jan 29, 2026" [ref=e4822]
+              - cell "Starbucks Test Account" [ref=e4823]:
+                - generic [ref=e4824]:
+                  - paragraph [ref=e4825]: Starbucks
+                  - paragraph [ref=e4826]: Test Account
+              - cell "Uncategorized" [ref=e4827]
+              - cell "$5.91" [ref=e4828]:
+                - generic [ref=e4829]:
+                  - img [ref=e4830]
+                  - generic [ref=e4833]: $5.91
+              - cell [ref=e4834]:
+                - generic [ref=e4835]:
+                  - button [ref=e4836] [cursor=pointer]:
+                    - img [ref=e4837]
+                  - button [ref=e4839] [cursor=pointer]:
+                    - img [ref=e4840]
+            - row "Jan 29, 2026 United Airlines Test Account Uncategorized $362.79" [ref=e4843]:
+              - cell "Jan 29, 2026" [ref=e4844]
+              - cell "United Airlines Test Account" [ref=e4845]:
+                - generic [ref=e4846]:
+                  - paragraph [ref=e4847]: United Airlines
+                  - paragraph [ref=e4848]: Test Account
+              - cell "Uncategorized" [ref=e4849]
+              - cell "$362.79" [ref=e4850]:
+                - generic [ref=e4851]:
+                  - img [ref=e4852]
+                  - generic [ref=e4855]: $362.79
+              - cell [ref=e4856]:
+                - generic [ref=e4857]:
+                  - button [ref=e4858] [cursor=pointer]:
+                    - img [ref=e4859]
+                  - button [ref=e4861] [cursor=pointer]:
+                    - img [ref=e4862]
+            - row "Jan 28, 2026 Electric Company Test Account Uncategorized $104.71" [ref=e4865]:
+              - cell "Jan 28, 2026" [ref=e4866]
+              - cell "Electric Company Test Account" [ref=e4867]:
+                - generic [ref=e4868]:
+                  - paragraph [ref=e4869]: Electric Company
+                  - paragraph [ref=e4870]: Test Account
+              - cell "Uncategorized" [ref=e4871]
+              - cell "$104.71" [ref=e4872]:
+                - generic [ref=e4873]:
+                  - img [ref=e4874]
+                  - generic [ref=e4877]: $104.71
+              - cell [ref=e4878]:
+                - generic [ref=e4879]:
+                  - button [ref=e4880] [cursor=pointer]:
+                    - img [ref=e4881]
+                  - button [ref=e4883] [cursor=pointer]:
+                    - img [ref=e4884]
+            - row "Jan 28, 2026 Enterprise Rent-A-Car Test Account Uncategorized $202.29" [ref=e4887]:
+              - cell "Jan 28, 2026" [ref=e4888]
+              - cell "Enterprise Rent-A-Car Test Account" [ref=e4889]:
+                - generic [ref=e4890]:
+                  - paragraph [ref=e4891]: Enterprise Rent-A-Car
+                  - paragraph [ref=e4892]: Test Account
+              - cell "Uncategorized" [ref=e4893]
+              - cell "$202.29" [ref=e4894]:
+                - generic [ref=e4895]:
+                  - img [ref=e4896]
+                  - generic [ref=e4899]: $202.29
+              - cell [ref=e4900]:
+                - generic [ref=e4901]:
+                  - button [ref=e4902] [cursor=pointer]:
+                    - img [ref=e4903]
+                  - button [ref=e4905] [cursor=pointer]:
+                    - img [ref=e4906]
+            - row "Jan 28, 2026 Trader Joes Test Account Uncategorized $92.45" [ref=e4909]:
+              - cell "Jan 28, 2026" [ref=e4910]
+              - cell "Trader Joes Test Account" [ref=e4911]:
+                - generic [ref=e4912]:
+                  - paragraph [ref=e4913]: Trader Joes
+                  - paragraph [ref=e4914]: Test Account
+              - cell "Uncategorized" [ref=e4915]
+              - cell "$92.45" [ref=e4916]:
+                - generic [ref=e4917]:
+                  - img [ref=e4918]
+                  - generic [ref=e4921]: $92.45
+              - cell [ref=e4922]:
+                - generic [ref=e4923]:
+                  - button [ref=e4924] [cursor=pointer]:
+                    - img [ref=e4925]
+                  - button [ref=e4927] [cursor=pointer]:
+                    - img [ref=e4928]
+            - row "Jan 28, 2026 United Airlines Test Account Uncategorized $529.53" [ref=e4931]:
+              - cell "Jan 28, 2026" [ref=e4932]
+              - cell "United Airlines Test Account" [ref=e4933]:
+                - generic [ref=e4934]:
+                  - paragraph [ref=e4935]: United Airlines
+                  - paragraph [ref=e4936]: Test Account
+              - cell "Uncategorized" [ref=e4937]
+              - cell "$529.53" [ref=e4938]:
+                - generic [ref=e4939]:
+                  - img [ref=e4940]
+                  - generic [ref=e4943]: $529.53
+              - cell [ref=e4944]:
+                - generic [ref=e4945]:
+                  - button [ref=e4946] [cursor=pointer]:
+                    - img [ref=e4947]
+                  - button [ref=e4949] [cursor=pointer]:
+                    - img [ref=e4950]
+            - row "Jan 28, 2026 Local Restaurant Test Account Uncategorized $66.88" [ref=e4953]:
+              - cell "Jan 28, 2026" [ref=e4954]
+              - cell "Local Restaurant Test Account" [ref=e4955]:
+                - generic [ref=e4956]:
+                  - paragraph [ref=e4957]: Local Restaurant
+                  - paragraph [ref=e4958]: Test Account
+              - cell "Uncategorized" [ref=e4959]
+              - cell "$66.88" [ref=e4960]:
+                - generic [ref=e4961]:
+                  - img [ref=e4962]
+                  - generic [ref=e4965]: $66.88
+              - cell [ref=e4966]:
+                - generic [ref=e4967]:
+                  - button [ref=e4968] [cursor=pointer]:
+                    - img [ref=e4969]
+                  - button [ref=e4971] [cursor=pointer]:
+                    - img [ref=e4972]
+            - row "Jan 27, 2026 Parking Meter Test Account Uncategorized $7.08" [ref=e4975]:
+              - cell "Jan 27, 2026" [ref=e4976]
+              - cell "Parking Meter Test Account" [ref=e4977]:
+                - generic [ref=e4978]:
+                  - paragraph [ref=e4979]: Parking Meter
+                  - paragraph [ref=e4980]: Test Account
+              - cell "Uncategorized" [ref=e4981]
+              - cell "$7.08" [ref=e4982]:
+                - generic [ref=e4983]:
+                  - img [ref=e4984]
+                  - generic [ref=e4987]: $7.08
+              - cell [ref=e4988]:
+                - generic [ref=e4989]:
+                  - button [ref=e4990] [cursor=pointer]:
+                    - img [ref=e4991]
+                  - button [ref=e4993] [cursor=pointer]:
+                    - img [ref=e4994]
+            - row "Jan 27, 2026 Employer Inc - Salary Test Account Uncategorized $8,500.00" [ref=e4997]:
+              - cell "Jan 27, 2026" [ref=e4998]
+              - cell "Employer Inc - Salary Test Account" [ref=e4999]:
+                - generic [ref=e5000]:
+                  - paragraph [ref=e5001]: Employer Inc - Salary
+                  - paragraph [ref=e5002]: Test Account
+              - cell "Uncategorized" [ref=e5003]
+              - cell "$8,500.00" [ref=e5004]:
+                - generic [ref=e5005]:
+                  - img [ref=e5006]
+                  - generic [ref=e5009]: $8,500.00
+              - cell [ref=e5010]:
+                - generic [ref=e5011]:
+                  - button [ref=e5012] [cursor=pointer]:
+                    - img [ref=e5013]
+                  - button [ref=e5015] [cursor=pointer]:
+                    - img [ref=e5016]
+            - row "Jan 27, 2026 Stock Dividend Test Account Uncategorized $125.50" [ref=e5019]:
+              - cell "Jan 27, 2026" [ref=e5020]
+              - cell "Stock Dividend Test Account" [ref=e5021]:
+                - generic [ref=e5022]:
+                  - paragraph [ref=e5023]: Stock Dividend
+                  - paragraph [ref=e5024]: Test Account
+              - cell "Uncategorized" [ref=e5025]
+              - cell "$125.50" [ref=e5026]:
+                - generic [ref=e5027]:
+                  - img [ref=e5028]
+                  - generic [ref=e5031]: $125.50
+              - cell [ref=e5032]:
+                - generic [ref=e5033]:
+                  - button [ref=e5034] [cursor=pointer]:
+                    - img [ref=e5035]
+                  - button [ref=e5037] [cursor=pointer]:
+                    - img [ref=e5038]
+            - row "Jan 27, 2026 Freelance Client Test Account Uncategorized $1,250.00" [ref=e5041]:
+              - cell "Jan 27, 2026" [ref=e5042]
+              - cell "Freelance Client Test Account" [ref=e5043]:
+                - generic [ref=e5044]:
+                  - paragraph [ref=e5045]: Freelance Client
+                  - paragraph [ref=e5046]: Test Account
+              - cell "Uncategorized" [ref=e5047]
+              - cell "$1,250.00" [ref=e5048]:
+                - generic [ref=e5049]:
+                  - img [ref=e5050]
+                  - generic [ref=e5053]: $1,250.00
+              - cell [ref=e5054]:
+                - generic [ref=e5055]:
+                  - button [ref=e5056] [cursor=pointer]:
+                    - img [ref=e5057]
+                  - button [ref=e5059] [cursor=pointer]:
+                    - img [ref=e5060]
+            - row "Jan 26, 2026 Lowes Test Account Uncategorized $131.08" [ref=e5063]:
+              - cell "Jan 26, 2026" [ref=e5064]
+              - cell "Lowes Test Account" [ref=e5065]:
+                - generic [ref=e5066]:
+                  - paragraph [ref=e5067]: Lowes
+                  - paragraph [ref=e5068]: Test Account
+              - cell "Uncategorized" [ref=e5069]
+              - cell "$131.08" [ref=e5070]:
+                - generic [ref=e5071]:
+                  - img [ref=e5072]
+                  - generic [ref=e5075]: $131.08
+              - cell [ref=e5076]:
+                - generic [ref=e5077]:
+                  - button [ref=e5078] [cursor=pointer]:
+                    - img [ref=e5079]
+                  - button [ref=e5081] [cursor=pointer]:
+                    - img [ref=e5082]
+  - generic [ref=e2574]: $0k
+  - img [ref=e2575]

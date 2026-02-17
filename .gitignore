@@ -1,0 +1,29 @@
+# Database files (contains sensitive transaction data)
+*.db
+*.sqlite
+*.sqlite3
+
+# Environment variables with secrets
+.env
+.env.local
+.env.*.local
+
+# IDE/Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+dist/
+build/
+node_modules/
+
+# Logs
+logs/*.log
+/backend/venv/

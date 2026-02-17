@@ -1,0 +1,20 @@
+# Backend dependencies
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+sqlalchemy==2.0.25
+pydantic==2.5.3
+pydantic-settings==2.1.0
+python-multipart==0.0.6
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+aiofiles==23.2.1
+
+# LLM providers
+openai==1.12.0
+anthropic==0.18.1
+ollama==0.1.7
+
+# Data processing
+pandas==2.2.0
+numpy==1.26.3
+python-dateutil==2.8.2
