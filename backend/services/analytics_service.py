@@ -1,3 +1,4 @@
+import json
 import os
 from typing import List, Optional
 from datetime import datetime
@@ -276,6 +277,44 @@ class AnalyticsService:
             }
         except Exception as e:
             return {"error": str(e)}
+    
+    def generate_insights_mcp(self, query: str, start_date: Optional[datetime] = None,
+                              end_date: Optional[datetime] = None) -> dict:
+        """Generate insights using MCP tool calling with agentic loop."""
+        
+        from services.tool_calling_service import ToolCallingService
+        
+        llm_config = self.db.query(LLMConfiguration).filter(
+            LLMConfiguration.is_active == True
+        ).first()
+        
+        if not llm_config:
+            return {"error": "No active LLM configuration found"}
+        
+        tool_service = ToolCallingService(self.db)
+        
+        # Build the prompt with tools info
+        start_date_str = start_date.strftime("%Y-%m-%d") if start_date else None
+        end_date_str = end_date.strftime("%Y-%m-%d") if end_date else None
+        
+        prompt = tool_service.build_prompt_with_tools(query, start_date_str, end_date_str)
+        
+        # Call LLM with tools using agentic loop
+        try:
+            response = self._call_llm_with_tools_agentic_loop(
+                llm_config, prompt, tool_service.tools, tool_service
+            )
+            
+            return {
+                "success": True,
+                "response": response,
+                "query": query,
+                "tool_calls_used": True
+            }
+        except Exception as e:
+            import traceback
+            traceback.print_exc()
+            return {"error": str(e)}
 
     def _build_category_context_for_insights(self, categories: List[Category]) -> str:
         """Build category context string for insights generation."""
@@ -359,6 +398,142 @@ Instructions:
 
 Answer:"""
 
+    def _call_llm_with_tools_agentic_loop(self, config: LLMConfiguration, prompt: str, tools: list, tool_service) -> str:
+        """Call LLM with tools in a loop until it returns final answer (not tool calls)."""
+        import re
+        
+        provider = config.provider.lower()
+        model_name = config.model_name
+        max_iterations = 5
+        iteration = 0
+        
+        messages = [
+            {"role": "system", "content": "You are a financial data analyst. Use the provided tools to answer questions about transactions."},
+            {"role": "user", "content": prompt}
+        ]
+        
+        while iteration < max_iterations:
+            iteration += 1
+            print(f"\n[AGENTIC LOOP] Iteration {iteration}/{max_iterations}")
+            
+            try:
+                if provider == "openai":
+                    from openai import OpenAI
+                    
+                    client_kwargs = {}
+                    base_url = getattr(config, 'base_url', None)
+                    api_key = getattr(config, 'api_key', None)
+                    
+                    if base_url:
+                        if not base_url.endswith('/v1'):
+                            base_url = base_url.rstrip('/') + '/v1'
+                        client_kwargs["base_url"] = base_url
+                    if api_key:
+                        client_kwargs["api_key"] = api_key
+                    else:
+                        client_kwargs["api_key"] = "not-needed"
+                    
+                    client = OpenAI(**client_kwargs)
+                    
+                    response = client.chat.completions.create(
+                        model=model_name,
+                        messages=messages,
+                        temperature=getattr(config, 'temperature', 0.3),
+                        max_tokens=getattr(config, 'max_tokens', 2000),
+                        tools=[{"type": "function", "function": t["function"]} for t in tools]
+                    )
+                    
+                    choice = response.choices[0]
+                    message = choice.message
+                    
+                    tool_calls_found = False
+                    
+                    if hasattr(message, 'tool_calls') and message.tool_calls:
+                        tool_calls_found = True
+                        print(f"[AGENTIC LOOP] LLM called {len(message.tool_calls)} tool(s)")
+                        
+                        messages.append({"role": "assistant", "content": message.content or ""})
+                        
+                        for tool_call in message.tool_calls:
+                            tool_name = tool_call.function.name
+                            try:
+                                args = tool_call.function.arguments
+                                if isinstance(args, str):
+                                    tool_args = json.loads(args)
+                                else:
+                                    tool_args = args if args else {}
+                                
+                                print(f"  - Executing {tool_name} with args: {list(tool_args.keys())}")
+                                result = tool_service.execute_tool(tool_name, tool_args)
+                                
+                                messages.append({
+                                    "role": "tool",
+                                    "content": json.dumps(result),
+                                    "tool_call_id": tool_call.id
+                                })
+                            except Exception as e:
+                                print(f"  - Error executing {tool_name}: {str(e)}")
+                                messages.append({
+                                    "role": "tool",
+                                    "content": json.dumps({"error": str(e)}),
+                                    "tool_call_id": tool_call.id
+                                })
+                    else:
+                        content = message.content or ""
+                        tool_call_pattern = r'\{\s*"name"\s*:\s*"([^"]+)"[^}]*"arguments"\s*:\s*(\{[^}]+\})\s*\}'
+                        matches = re.findall(tool_call_pattern, content, re.DOTALL)
+                        
+                        if matches:
+                            tool_calls_found = True
+                            print(f"[AGENTIC LOOP] LLM made {len(matches)} tool call(s) in text")
+                            
+                            messages.append({"role": "assistant", "content": content})
+                            
+                            for tool_name, args_str in matches:
+                                try:
+                                    tool_args = json.loads(args_str)
+                                    print(f"  - Executing {tool_name}")
+                                    result = tool_service.execute_tool(tool_name, tool_args)
+                                    
+                                    messages.append({
+                                        "role": "tool",
+                                        "content": json.dumps(result),
+                                        "tool_call_id": f"manual_{len(messages)}"
+                                    })
+                                except Exception as e:
+                                    print(f"  - Error executing {tool_name}: {str(e)}")
+                                    messages.append({
+                                        "role": "tool",
+                                        "content": json.dumps({"error": str(e)}),
+                                        "tool_call_id": f"manual_{len(messages)}"
+                                    })
+                    
+                    if not tool_calls_found:
+                        print(f"[AGENTIC LOOP] No tool calls found - returning final answer")
+                        return message.content or ""
+                    
+                elif provider == "anthropic":
+                    import anthropic
+                    
+                    client = anthropic.Anthropic(api_key=config.api_key)
+                    response = client.messages.create(
+                        model=model_name,
+                        max_tokens=getattr(config, 'max_tokens', 2000),
+                        temperature=getattr(config, 'temperature', 0.3),
+                        messages=messages
+                    )
+                    return response.content[0].text
+                
+                elif provider == "ollama":
+                    return self._call_llm(config, prompt)
+                
+            except Exception as e:
+                print(f"[AGENTIC LOOP] Error: {str(e)}")
+                raise
+        
+        print(f"[AGENTIC LOOP] Max iterations ({max_iterations}) reached")
+        return "I was unable to complete the analysis within the iteration limit."
+    
     def _call_llm(self, config: LLMConfiguration, prompt: str) -> str:
         """Call the configured LLM with the prompt."""
         provider = config.provider.lower()

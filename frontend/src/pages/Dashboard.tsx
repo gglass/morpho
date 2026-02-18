@@ -1,19 +1,37 @@
-import { useMemo } from 'react';
-import { useTransactions, useSummary, useCategorizeTransactions } from '@/hooks/useApi';
+import { useState, useMemo } from 'react';
+import { useTransactions, useSummary, useCategorizeTransactions, useGenerateInsights } from '@/hooks/useApi';
 import { formatCurrency, formatRelativeDate } from '@/utils/format';
-import { ArrowUpRight, ArrowDownRight, AlertCircle, Sparkles, Wallet, TrendingUp, TrendingDown, DollarSign } from 'lucide-react';
+import { ArrowUpRight, ArrowDownRight, Sparkles, Wallet, TrendingUp, TrendingDown, DollarSign, MessageSquare } from 'lucide-react';
+import AIInsightRenderer from '@/components/AIInsightRenderer';
 
 export default function Dashboard() {
   const { data: summary } = useSummary();
   const { data: transactions, isLoading: transactionsLoading } = useTransactions({ limit: 10 });
-  // categories variable is declared but not used in this component
   const categorizeMutation = useCategorizeTransactions();
-  
-  // selectedTransactions state is declared but not used in this component
+  const generateInsightsMutation = useGenerateInsights();
+
+  const [insightQuery, setInsightQuery] = useState('');
+  const [showInsight, setShowInsight] = useState(false);
+  const [currentInsight, setCurrentInsight] = useState('');
 
   const uncategorizedTransactions = useMemo(() => {
     return transactions?.filter(t => !t.is_categorized) || [];
   }, [transactions]);
+
+  const handleGenerateInsight = () => {
+    if (!insightQuery.trim()) return;
+    
+    generateInsightsMutation.mutate({
+      query: insightQuery,
+      start_date: undefined,
+      end_date: undefined
+    }, {
+      onSuccess: (data) => {
+        setCurrentInsight(data.insight || data.response || '');
+        setShowInsight(true);
+      }
+    });
+  };
 
   const handleCategorizeAll = () => {
     if (uncategorizedTransactions.length > 0) {
@@ -55,7 +73,6 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-8 animate-fadeIn">
-      {/* Header */}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-stone-100">Dashboard</h1>
@@ -74,7 +91,53 @@ export default function Dashboard() {
         )}
       </div>
 
-      {/* Stats Grid */}
+      <div className="card">
+        <div className="p-6 border-b border-dark-500">
+          <h2 className="text-xl font-bold text-stone-100 flex items-center gap-2">
+            <MessageSquare className="w-5 h-5 text-warm-400" />
+            AI Insights
+          </h2>
+          <p className="text-stone-400 text-sm mt-1">Ask questions about your spending patterns</p>
+        </div>
+        
+        <div className="p-6 space-y-4">
+          <div className="flex gap-2">
+            <input
+              type="text"
+              value={insightQuery}
+              onChange={(e) => setInsightQuery(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && handleGenerateInsight()}
+              placeholder="Ask AI about your finances (e.g., 'What's my top spending category?')"
+              className="flex-1 px-4 py-2 bg-dark-700 border border-dark-500 rounded-lg text-stone-100 placeholder-stone-600 focus:ring-2 focus:ring-warm-500 focus:border-transparent"
+            />
+            <button
+              onClick={handleGenerateInsight}
+              disabled={generateInsightsMutation.isPending || !insightQuery.trim()}
+              className="px-6 py-2 bg-warm-500 hover:bg-warm-600 text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+            >
+              <Sparkles className="w-4 h-4" />
+              Generate
+            </button>
+          </div>
+
+          {generateInsightsMutation.isPending && (
+            <div className="flex items-center justify-center py-8">
+              <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-warm-500"></div>
+            </div>
+          )}
+
+          {showInsight && currentInsight && (
+            <div className="mt-4 pt-4 border-t border-dark-700">
+              <AIInsightRenderer insight={currentInsight} />
+            </div>
+          )}
+          
+          {generateInsightsMutation.error && (
+            <p className="text-red-400 text-sm">{(generateInsightsMutation.error as Error).message}</p>
+          )}
+        </div>
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {stats.map((stat, index) => (
           <div key={index} className="card p-6">
@@ -93,22 +156,6 @@ export default function Dashboard() {
         ))}
       </div>
 
-      {/* Uncategorized Alert */}
-      {summary && summary.uncategorized_count > 0 && (
-        <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl p-4 flex items-center gap-3">
-          <AlertCircle className="w-5 h-5 text-amber-400" />
-          <div className="flex-1">
-            <p className="text-amber-200 font-medium">
-              {summary.uncategorized_count} transaction{summary.uncategorized_count !== 1 ? 's' : ''} need{summary.uncategorized_count === 1 ? 's' : ''} categorization
-            </p>
-            <p className="text-amber-200/60 text-sm">
-              Use the AI categorization feature to automatically classify your transactions
-            </p>
-          </div>
-        </div>
-      )}
-
-      {/* Recent Transactions */}
       <div className="card">
         <div className="p-6 border-b border-dark-500">
           <h2 className="text-xl font-bold text-stone-100">Recent Transactions</h2>

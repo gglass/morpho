@@ -1,15 +1,13 @@
 import { useState, useMemo, useEffect } from 'react';
-import { useTransactions, useCategories, useUpdateTransaction, useDeleteTransaction, useCategorizeTransactions, useSummary, useTransactionCount } from '@/hooks/useApi';
+import { useTransactions, useCategories, useDeleteTransaction, useCategorizeTransactions, useSummary, useTransactionCount, useUpdateTransaction } from '@/hooks/useApi';
 import { formatCurrency, formatDate } from '@/utils/format';
-import { ArrowUpRight, ArrowDownRight, Search, Filter, Sparkles, Trash2, Edit2, Check, X } from 'lucide-react';
+import { ArrowUpRight, ArrowDownRight, Search, Filter, Sparkles, Trash2 } from 'lucide-react';
 import type { Transaction } from '@/types';
 import TransactionDetailsModal from "@/components/TransactionDetailsModal";
 
 export default function Transactions() {
   const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<number | 'all' | -1>('all');
-  const [editingId, setEditingId] = useState<number | null>(null);
-  const [editCategory, setEditCategory] = useState<number | ''>('');
   const [page, setPage] = useState(0);
   const ITEMS_PER_PAGE = 50;
   
@@ -27,8 +25,9 @@ export default function Transactions() {
   const totalCount = summary?.transaction_count || 0;
   
   // Use filtered count when category or search is active
+  // Pass category_id directly (it can be a number, -1 for uncategorized, or undefined)
   const { data: filteredCount } = useTransactionCount({
-    category_id: selectedCategory === 'all' ? undefined : selectedCategory,
+    category_id: selectedCategory === 'all' ? undefined : Number(selectedCategory),
     search: search || undefined
   });
   
@@ -44,9 +43,9 @@ export default function Transactions() {
     search: search || undefined
   });
   const { data: categories } = useCategories();
-  const updateMutation = useUpdateTransaction();
   const deleteMutation = useDeleteTransaction();
   const categorizeMutation = useCategorizeTransactions();
+  const updateMutation = useUpdateTransaction();
 
   // For uncategorized (-1), we need client-side filtering since backend doesn't support it
   const filteredTransactions = useMemo(() => {
@@ -69,19 +68,6 @@ export default function Transactions() {
     }
   };
 
-  const handleEdit = (transaction: Transaction) => {
-    setEditingId(transaction.id);
-    setEditCategory((transaction.category_id as number) || '');
-  };
-
-  const handleSave = (id: number) => {
-    updateMutation.mutate({
-      id,
-      transaction: { category_id: editCategory || undefined }
-    });
-    setEditingId(null);
-  };
-
   const handleDelete = (id: number) => {
     if (confirm('Are you sure you want to delete this transaction?')) {
       deleteMutation.mutate(id);
@@ -94,12 +80,18 @@ export default function Transactions() {
     setIsModalOpen(true);
   };
 
+  const handleSaveTransaction = async (id: number, updates: Partial<Transaction>) => {
+    await updateMutation.mutateAsync({ id, transaction: updates });
+    setIsModalOpen(false);
+  };
+
   return (
     <div className="space-y-6 animate-fadeIn">
       {/* Transaction Details Modal */}
       <TransactionDetailsModal 
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
+        onSave={handleSaveTransaction}
         transaction={selectedTransaction}
         categories={categories || []}
       />
@@ -196,18 +188,7 @@ export default function Transactions() {
                       </div>
                     </td>
                     <td className="px-6 py-4">
-                      {editingId === transaction.id ? (
-                        <select
-                          value={editCategory}
-                          onChange={(e) => setEditCategory(e.target.value === '0' ? '' : Number(e.target.value))}
-                          className="px-3 py-1 bg-dark-700 border border-dark-500 rounded-lg text-stone-100 text-sm"
-                        >
-                          <option value={0}>Select...</option>
-                          {categories?.map(cat => (
-                            <option key={cat.id} value={cat.id}>{cat.name}</option>
-                          ))}
-                        </select>
-                      ) : transaction.category ? (
+                      {transaction.category ? (
                         <span 
                           className="px-3 py-1 rounded-full text-sm"
                           style={{ 
@@ -237,49 +218,15 @@ export default function Transactions() {
                     </td>
                     <td className="px-6 py-4">
                       <div className="flex items-center justify-center gap-2">
-                        {editingId === transaction.id ? (
-                          <>
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                handleSave(transaction.id);
-                              }}
-                              className="p-2 text-emerald-400 hover:bg-emerald-500/10 rounded-lg transition-colors"
-                            >
-                              <Check className="w-4 h-4" />
-                            </button>
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                setEditingId(null);
-                              }}
-                              className="p-2 text-stone-400 hover:bg-dark-600 rounded-lg transition-colors"
-                            >
-                              <X className="w-4 h-4" />
-                            </button>
-                          </>
-                        ) : (
-                          <>
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                handleEdit(transaction);
-                              }}
-                              className="p-2 text-stone-400 hover:text-stone-200 hover:bg-dark-600 rounded-lg transition-colors"
-                            >
-                              <Edit2 className="w-4 h-4" />
-                            </button>
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                handleDelete(transaction.id);
-                              }}
-                              className="p-2 text-stone-400 hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-colors"
-                            >
-                              <Trash2 className="w-4 h-4" />
-                            </button>
-                          </>
-                        )}
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleDelete(transaction.id);
+                          }}
+                          className="p-2 text-stone-400 hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-colors"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
                       </div>
                     </td>
                   </tr>

@@ -1,10 +1,11 @@
 import { useState, useEffect, useMemo } from 'react';
 import type { Transaction, Category } from '@/types';
-import { ArrowUpRight, ArrowDownRight, X, Save, Edit2 } from 'lucide-react';
+import { ArrowUpRight, ArrowDownRight, X, Save, Edit2, Check } from 'lucide-react';
 
 interface TransactionDetailsModalProps {
   isOpen: boolean;
   onClose: () => void;
+  onSave: (transactionId: number, updates: Partial<Transaction>) => Promise<void>;
   transaction: Transaction | null;
   categories: Category[];
 }
@@ -12,17 +13,22 @@ interface TransactionDetailsModalProps {
 export default function TransactionDetailsModal({
   isOpen,
   onClose,
+  onSave,
   transaction,
   categories,
 }: TransactionDetailsModalProps) {
   const [selectedCategory, setSelectedCategory] = useState<number | ''>('');
   const [selectedSubcategory, setSelectedSubcategory] = useState<number | ''>('');
   const [isEditing, setIsEditing] = useState(false);
+  const [amount, setAmount] = useState<string>('');
+  const [isIncome, setIsIncome] = useState<boolean>(false);
 
   useEffect(() => {
     if (transaction) {
       setSelectedCategory(transaction.category_id || '');
       setSelectedSubcategory(transaction.subcategory_id || '');
+      setAmount(Math.abs(transaction.amount).toString());
+      setIsIncome(transaction.is_income);
       setIsEditing(false);
     }
   }, [transaction]);
@@ -68,6 +74,20 @@ export default function TransactionDetailsModal({
 
   if (!isOpen || !transaction) return null;
 
+  const handleSave = async () => {
+    const numericAmount = parseFloat(amount);
+    const finalAmount = isIncome ? Math.abs(numericAmount) : -Math.abs(numericAmount);
+    
+    await onSave(transaction.id, {
+      category_id: selectedCategory || undefined,
+      subcategory_id: selectedSubcategory || undefined,
+      amount: finalAmount,
+      is_income: isIncome
+    });
+    
+    setIsEditing(false);
+  };
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       <div 
@@ -110,19 +130,33 @@ export default function TransactionDetailsModal({
           <div className="border-t border-dark-700 pt-6">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-medium text-stone-200">Category</h3>
-              {!isEditing && transaction.category && (
-                <button
-                  onClick={() => setIsEditing(true)}
-                  className="flex items-center gap-1.5 text-sm text-warm-500 hover:text-warm-400 transition-colors"
-                >
-                  <Edit2 className="w-3.5 h-3.5" />
-                  Edit
-                </button>
-              )}
             </div>
 
             {isEditing ? (
               <div className="space-y-3">
+                <div>
+                  <label className="block text-sm font-medium text-stone-500 mb-1.5">Amount</label>
+                  <input
+                    type="number"
+                    step="0.01"
+                    value={amount}
+                    onChange={(e) => setAmount(e.target.value)}
+                    className="w-full px-3 py-2 bg-dark-700 border border-dark-500 rounded-lg text-stone-100 focus:ring-2 focus:ring-warm-500 focus:border-transparent"
+                  />
+                </div>
+
+                <div className="flex items-center gap-4">
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={isIncome}
+                      onChange={(e) => setIsIncome(e.target.checked)}
+                      className="w-4 h-4 text-emerald-500 rounded focus:ring-emerald-500 border-gray-600 bg-dark-700"
+                    />
+                    <span className="text-stone-300">This is income</span>
+                  </label>
+                </div>
+
                 <div>
                   <label className="block text-sm font-medium text-stone-500 mb-1.5">Category</label>
                   <select
@@ -158,12 +192,10 @@ export default function TransactionDetailsModal({
 
                 <div className="flex gap-2 pt-2">
                   <button
-                    onClick={() => {
-                      onClose();
-                    }}
+                    onClick={handleSave}
                     className="flex items-center gap-1.5 px-4 py-2 bg-warm-600 hover:bg-warm-700 text-white rounded-lg transition-colors"
                   >
-                    <Save className="w-4 h-4" />
+                    <Check className="w-4 h-4" />
                     Save Changes
                   </button>
                   <button
@@ -179,34 +211,43 @@ export default function TransactionDetailsModal({
                 </div>
               </div>
             ) : (
-              <div className="space-y-2">
-                {transaction.category ? (
-                  <>
-                    <div className="flex items-center gap-2">
-                      <span 
-                        className="px-3 py-1.5 rounded-full text-sm font-medium"
-                        style={{
-                          backgroundColor: `${transaction.category.color}20`,
-                          color: transaction.category.color
-                        }}
-                      >
-                        {transaction.category.name}
-                      </span>
-                    </div>
-                    {transaction.subcategory && (
-                      <div className="flex items-center gap-2 pl-4">
+              <>
+                <div className="space-y-2">
+                  {transaction.category ? (
+                    <>
+                      <div className="flex items-center gap-2">
                         <span 
-                          className="px-3 py-1 rounded-full text-xs font-medium bg-stone-700/50 text-stone-300"
+                          className="px-3 py-1.5 rounded-full text-sm font-medium"
+                          style={{
+                            backgroundColor: `${transaction.category.color}20`,
+                            color: transaction.category.color
+                          }}
                         >
-                          {transaction.subcategory.name}
+                          {transaction.category.name}
                         </span>
                       </div>
-                    )}
-                  </>
-                ) : (
-                  <p className="text-amber-400 text-sm">Uncategorized</p>
-                )}
-              </div>
+                      {transaction.subcategory && (
+                        <div className="flex items-center gap-2 pl-4">
+                          <span 
+                            className="px-3 py-1 rounded-full text-xs font-medium bg-stone-700/50 text-stone-300"
+                          >
+                            {transaction.subcategory.name}
+                          </span>
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <p className="text-amber-400 text-sm">Uncategorized</p>
+                  )}
+                </div>
+                <button
+                  onClick={() => setIsEditing(true)}
+                  className="mt-2 px-3 py-1.5 bg-warm-600 hover:bg-warm-700 text-white text-sm rounded-lg transition-colors flex items-center gap-1.5"
+                >
+                  <Edit2 className="w-4 h-4" />
+                  Edit
+                </button>
+              </>
             )}
           </div>
         </div>

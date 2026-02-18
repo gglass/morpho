@@ -76,7 +76,7 @@ def get_transactions(
     limit: int = 50,
     start_date: Optional[datetime] = None,
     end_date: Optional[datetime] = None,
-    category_id: Optional[int] = None,
+    category_id: Optional[int] = Query(None),
     is_income: Optional[bool] = None,
     search: Optional[str] = None,
     account_name: Optional[str] = None,
@@ -296,7 +296,7 @@ def get_sankey_data(
 
 @router.get("/transactions/count")
 def get_transaction_count(
-    category_id: Optional[int] = None,
+    category_id: Optional[int] = Query(None),
     search: Optional[str] = None,
     db: Session = Depends(get_db)
 ):
@@ -370,7 +370,7 @@ def generate_insights(request: dict, db: Session = Depends(get_db)):
         except (ValueError, TypeError):
             pass
     
-    return service.generate_insights(query, start_date, end_date)
+    return service.generate_insights_mcp(query, start_date, end_date)
 
 # CSV Import routes
 @router.post("/import/csv")

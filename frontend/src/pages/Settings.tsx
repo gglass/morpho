@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useLLMConfigs, useCategories } from '@/hooks/useApi';
 import { useQueryClient } from '@tanstack/react-query';
-import { createLLMConfig, deleteLLMConfig } from '@/utils/api';
-import { Key, Server, Plus, Trash2, Sparkles, RefreshCw } from 'lucide-react';
+import { createLLMConfig, deleteLLMConfig, updateLLMConfig } from '@/utils/api';
+import { Key, Server, Plus, Trash2, Sparkles, RefreshCw, Edit } from 'lucide-react';
 
 interface LLMFormData {
   provider: string;
@@ -20,6 +20,7 @@ export default function Settings() {
   const { data: categories } = useCategories();
   
   const [showForm, setShowForm] = useState(false);
+  const [editingConfig, setEditingConfig] = useState<number | null>(null);
   const [fetchingModels, setFetchingModels] = useState(false);
   const [availableModels, setAvailableModels] = useState<string[]>([]);
   const [formData, setFormData] = useState<LLMFormData>({
@@ -41,11 +42,20 @@ export default function Settings() {
     }
     
     try {
-      await createLLMConfig({
-        ...formData,
-        base_url: formData.base_url || undefined,
-      });
-      queryClient.invalidateQueries({ queryKey: ['llm-configs'] });
+      if (editingConfig !== null) {
+        await updateLLMConfig(editingConfig, {
+          ...formData,
+          base_url: formData.base_url || undefined,
+        });
+        queryClient.invalidateQueries({ queryKey: ['llm-configs'] });
+        setEditingConfig(null);
+      } else {
+        await createLLMConfig({
+          ...formData,
+          base_url: formData.base_url || undefined,
+        });
+        queryClient.invalidateQueries({ queryKey: ['llm-configs'] });
+      }
       setShowForm(false);
       setFormData({
         provider: 'openai',
@@ -65,16 +75,27 @@ export default function Settings() {
   const handleDelete = async (id: number) => {
     if (confirm('Are you sure you want to delete this configuration?')) {
       try {
-        if (deleteLLMConfig) {
-          await deleteLLMConfig(id);
-        } else {
-          await fetch(`/api/llm-configs/${id}`, { method: 'DELETE' });
-        }
+        await deleteLLMConfig(id);
         queryClient.invalidateQueries({ queryKey: ['llm-configs'] });
-      } catch (error) {
-        alert('Failed to delete configuration');
+      } catch (error: any) {
+        const message = error?.response?.data?.detail || error?.message || 'Failed to delete configuration';
+        alert(`Failed to delete configuration: ${message}`);
       }
     }
+  };
+
+  const handleEdit = (config: any) => {
+    setEditingConfig(config.id);
+    setFormData({
+      provider: config.provider,
+      api_key: config.api_key || '',
+      model_name: config.model_name,
+      base_url: config.base_url || '',
+      temperature: config.temperature,
+      max_tokens: config.max_tokens,
+      is_active: config.is_active,
+    });
+    setShowForm(true);
   };
 
   const handleFetchModels = async () => {
@@ -264,7 +285,7 @@ export default function Settings() {
                   type="submit"
                   className="px-6 py-2 bg-warm-500 hover:bg-warm-600 text-white rounded-xl transition-colors font-medium"
                 >
-                  Save Configuration
+                  {editingConfig !== null ? 'Update Configuration' : 'Save Configuration'}
                 </button>
                 <button
                   type="button"
@@ -306,12 +327,22 @@ export default function Settings() {
                     </p>
                   </div>
                 </div>
-                <button
-                  onClick={() => handleDelete(config.id)}
-                  className="p-2 text-stone-400 hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-colors"
-                >
-                  <Trash2 className="w-4 h-4" />
-                </button>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => handleEdit(config)}
+                    className="p-2 text-stone-400 hover:text-blue-400 hover:bg-blue-500/10 rounded-lg transition-colors"
+                    title="Edit configuration"
+                  >
+                    <Edit className="w-4 h-4" />
+                  </button>
+                  <button
+                    onClick={() => handleDelete(config.id)}
+                    className="p-2 text-stone-400 hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-colors"
+                    title="Delete configuration"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
             ))}
           </div>
