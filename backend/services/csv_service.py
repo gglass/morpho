@@ -218,14 +218,16 @@ class CSVImportService:
             print(f"    Skipping row: amount is 0. Columns: {dict(row)}")
             return None
         
+        # Check for duplicate transactions based on description, amount, and datetime
+        # These three fields combined are extremely unlikely to be identical for different transactions
         existing = self.db.query(Transaction).filter(
             Transaction.date == date,
             Transaction.description == description,
-            Transaction.amount == amount,
-            Transaction.account_name == account_name
+            Transaction.amount == amount
         ).first()
         
         if existing:
+            print(f"    Skipping duplicate transaction: {description[:50]} on {date.strftime('%Y-%m-%d')} for ${amount}")
             return None
         
         transaction = Transaction(

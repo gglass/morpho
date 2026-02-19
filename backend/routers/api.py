@@ -140,7 +140,18 @@ def get_transaction(transaction_id: int, db: Session = Depends(get_db)):
 
 @router.post("/transactions", response_model=TransactionResponse)
 def create_transaction(transaction: TransactionCreate, db: Session = Depends(get_db)):
-    """Create a new transaction."""
+    """Create a new transaction, checking for duplicates."""
+    # Check for duplicate based on date, description, and amount
+    # These three fields combined are extremely unlikely to be identical for different transactions
+    existing = db.query(Transaction).filter(
+        Transaction.date == transaction.date,
+        Transaction.description == transaction.description,
+        Transaction.amount == transaction.amount
+    ).first()
+    
+    if existing:
+        raise HTTPException(status_code=409, detail="Transaction already exists")
+    
     db_transaction = Transaction(**transaction.dict())
     db.add(db_transaction)
     db.commit()
