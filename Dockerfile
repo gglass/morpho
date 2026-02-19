@@ -3,11 +3,14 @@ FROM node:20-alpine AS frontend-builder
 
 WORKDIR /app/frontend
 
+# Install build dependencies (tsc needs these)
+RUN apk add --no-cache python3 make g++
+
 # Copy package files
 COPY frontend/package*.json ./
 
-# Install dependencies
-RUN npm ci --only=production && npm cache clean --force
+# Install all dependencies (including devDependencies for build)
+RUN npm ci && npm cache clean --force
 
 # Copy source code
 COPY frontend/ .
