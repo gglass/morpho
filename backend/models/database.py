@@ -1,3 +1,4 @@
+import os
 from sqlalchemy import create_engine, Column, Integer, String, Float, DateTime, ForeignKey, Text, Boolean
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
@@ -5,7 +6,14 @@ from datetime import datetime
 
 Base = declarative_base()
 
-DATABASE_URL = "sqlite:////app/data/budget.db"
+DATABASE_PATH = os.environ.get("DATABASE_PATH")
+if not DATABASE_PATH:
+    if os.path.exists("/app/data"):
+        DATABASE_PATH = "/app/data/budget.db"
+    else:
+        DATABASE_PATH = "app/data/budget.db"
+
+DATABASE_URL = f"sqlite:///{DATABASE_PATH}"
 engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 

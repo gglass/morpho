@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useTransactions, useCategories, useDeleteTransaction, useCategorizeTransactions, useSummary, useTransactionCount, useUpdateTransaction } from '@/hooks/useApi';
 import { formatCurrency, formatDate } from '@/utils/format';
-import { ArrowUpRight, ArrowDownRight, Search, Filter, Sparkles, Trash2 } from 'lucide-react';
+import { ArrowUpRight, ArrowDownRight, Search, Filter, Sparkles, Trash2, ArrowUp, ArrowDown } from 'lucide-react';
 import type { Transaction } from '@/types';
 import TransactionDetailsModal from "@/components/TransactionDetailsModal";
 
@@ -10,6 +10,10 @@ export default function Transactions() {
   const [selectedCategory, setSelectedCategory] = useState<number | 'all' | -1>('all');
   const [page, setPage] = useState(0);
   const ITEMS_PER_PAGE = 50;
+  
+  // Sorting state
+  const [sortField, setSortField] = useState<'date' | 'amount'>('date');
+  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc');
   
   // Modal state
   const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
@@ -55,6 +59,25 @@ export default function Transactions() {
     }
     return transactions;
   }, [transactions, selectedCategory]);
+
+  const sortedTransactions = useMemo(() => {
+    if (!filteredTransactions.length) return [];
+    
+    const sorted = [...filteredTransactions];
+    sorted.sort((a, b) => {
+      let comparison = 0;
+      
+      if (sortField === 'date') {
+        comparison = new Date(a.date).getTime() - new Date(b.date).getTime();
+      } else if (sortField === 'amount') {
+        comparison = Math.abs(a.amount) - Math.abs(b.amount);
+      }
+      
+      return sortDirection === 'asc' ? comparison : -comparison;
+    });
+    
+    return sorted;
+  }, [filteredTransactions, sortField, sortDirection]);
 
   const uncategorizedCount = useMemo(() => 
     transactions?.filter(t => !t.is_categorized).length || 0,
@@ -162,15 +185,49 @@ export default function Transactions() {
             <table className="w-full">
               <thead className="bg-dark-700">
                 <tr>
-                  <th className="text-left px-6 py-4 text-stone-400 font-medium">Date</th>
+                  <th 
+                    className="text-left px-6 py-4 text-stone-400 font-medium hover:text-stone-200 cursor-pointer"
+                    onClick={() => {
+                      if (sortField === 'date') {
+                        setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+                      } else {
+                        setSortField('date');
+                        setSortDirection('desc');
+                      }
+                    }}
+                  >
+                    <div className="flex items-center gap-1">
+                      Date
+                      {sortField === 'date' && (
+                        sortDirection === 'asc' ? <ArrowUp className="w-3 h-3" /> : <ArrowDown className="w-3 h-3" />
+                      )}
+                    </div>
+                  </th>
                   <th className="text-left px-6 py-4 text-stone-400 font-medium">Description</th>
                   <th className="text-left px-6 py-4 text-stone-400 font-medium">Category</th>
-                  <th className="text-right px-6 py-4 text-stone-400 font-medium">Amount</th>
+                  <th 
+                    className="text-right px-6 py-4 text-stone-400 font-medium hover:text-stone-200 cursor-pointer"
+                    onClick={() => {
+                      if (sortField === 'amount') {
+                        setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+                      } else {
+                        setSortField('amount');
+                        setSortDirection('desc');
+                      }
+                    }}
+                  >
+                    <div className="flex items-center justify-end gap-1">
+                      Amount
+                      {sortField === 'amount' && (
+                        sortDirection === 'asc' ? <ArrowUp className="w-3 h-3" /> : <ArrowDown className="w-3 h-3" />
+                      )}
+                    </div>
+                  </th>
                   <th className="px-6 py-4 text-stone-400 font-medium">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-dark-500">
-                {filteredTransactions.map((transaction) => (
+                {sortedTransactions.map((transaction) => (
                   <tr 
                     key={transaction.id} 
                     className="hover:bg-dark-600/30 cursor-pointer"
