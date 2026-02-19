@@ -62,7 +62,7 @@ COPY --from=backend-builder /app/backend/requirements.txt .
 
 COPY --from=frontend-builder /app/frontend/dist ./frontend
 
-RUN mkdir -p /app/data && chown -R ${UID}:${GID} /app/data && chmod 755 /app/data
+RUN mkdir -p /app/data && chmod 777 /app/data
 
 USER appuser
 
