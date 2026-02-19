@@ -21,6 +21,8 @@ services:
       start_period: 10s
     networks:
       - morpho-network
+    volumes:
+      - ./data:/app/data
 
 networks:
   morpho-network:

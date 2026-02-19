@@ -188,6 +188,8 @@ Or for manual docker runs:
 
 Your data will be saved in the `./data` directory on your host machine.
 
+**User Permissions**: The container runs as a non-root user (`appuser`) with UID/GID 1000 by default. For bind mounts to work correctly, ensure the host `./data` directory is writable by this user (e.g., `chmod 775 ./data` or use a named volume).
+
 ## Development
 
 ### Backend Development

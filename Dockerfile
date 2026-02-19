@@ -46,10 +46,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Create non-root user for security
-RUN useradd --create-home --shell /bin/bash appuser
+ARG UID=1000
+ARG GID=1000
 
-# Copy backend dependencies and source
+RUN groupadd --gid ${GID} appgroup && \
+    useradd --create-home --shell /bin/bash --uid ${UID} --gid ${GID} appuser
+
 COPY --from=backend-builder /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
 COPY --from=backend-builder /usr/local/bin/uvicorn /usr/local/bin/uvicorn
 COPY --from=backend-builder /app/backend/app ./app
@@ -58,13 +60,10 @@ COPY --from=backend-builder /app/backend/routers ./routers
 COPY --from=backend-builder /app/backend/services ./services
 COPY --from=backend-builder /app/backend/requirements.txt .
 
-# Copy frontend build artifacts
 COPY --from=frontend-builder /app/frontend/dist ./frontend
 
-# Create data directory for database with proper ownership (must be done AFTER user creation)
-RUN mkdir -p /app/data && chown appuser:appuser /app/data && chmod 755 /app/data
+RUN mkdir -p /app/data && chown -R ${UID}:${GID} /app/data && chmod 755 /app/data
 
-# Switch to non-root user
 USER appuser
 
 # Expose frontend port
