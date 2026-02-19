@@ -2,14 +2,10 @@ from sqlalchemy import create_engine, Column, Integer, String, Float, DateTime, 
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
 from datetime import datetime
-import os
 
 Base = declarative_base()
 
-# Ensure data directory exists
-os.makedirs("data", exist_ok=True)
-
-DATABASE_URL = "sqlite:///data/budget.db"
+DATABASE_URL = "sqlite:////app/data/budget.db"
 engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 

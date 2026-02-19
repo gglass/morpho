@@ -37,7 +37,7 @@ A self-hosted budget tracking application inspired by Monarch Money. Features AI
 - Python 3.9+
 - Node.js 18+
 
-### Backend Setup
+### Backend Setup (Local Development)
 
 ```bash
 cd backend
@@ -46,12 +46,12 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 
 # Run the server
-python -m uvicorn app.main:app --reload --port 8000
+uvicorn app.main:app --reload --port 8000
 ```
 
 The API will be available at `http://localhost:8000`
 
-### Frontend Setup
+### Frontend Setup (Local Development)
 
 ```bash
 cd frontend
@@ -93,27 +93,42 @@ Categories include: Housing, Food, Transportation, Shopping, Entertainment, Heal
 ## Docker Deployment
 
 ### Prerequisites
-- Docker (v20+)
-- Docker Compose (v2.0+)
+- Docker (v20+) or Podman
+- Docker Compose (v2.0+) or podman-compose
 
 ### Quick Start with Docker Compose
 
 ```bash
-# Clone the repository
-git clone <your-repo-url>
-cd morpho
+cd /ai/python/morpho
 
 # Build and start the container
 docker-compose up -d --build
 
 # View logs
-docker-compose logs -f
+docker-compose logs -f morpho
 
 # Stop the application
 docker-compose down
 ```
 
-The application will be available at `http://localhost:8000`
+The application will be available at `http://localhost:8080` with:
+- **Frontend UI** (main application)
+- API Documentation at `/docs`
+- Health check at `/health`
+
+**Note**: The database is stored in the container filesystem (`/app/data/budget.db`). Data persists across container restarts.
+
+### Environment Variables
+
+The following environment variables can be configured (or set via the UI):
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `PYTHONUNBUFFERED` | Disable Python output buffering | `1` |
+| `PYTHONDONTWRITEBYTECODE` | Prevent Python from writing .pyc files | `1` |
+| `PORT` | Server port (frontend + backend API) | `8080` |
+
+For LLM API keys, configure them through the Settings page in the UI after deployment.
 
 ### Manual Docker Build
 
@@ -124,7 +139,7 @@ docker build -t morpho-budget-tracker .
 # Run the container
 docker run -d \
   --name morpho \
-  -p 8000:8000 \
+  -p 8080:8080 \
   -v $(pwd)/data:/app/data \
   -e PYTHONUNBUFFERED=1 \
   morpho-budget-tracker
@@ -138,7 +153,7 @@ The following environment variables can be configured (or set via the UI):
 |----------|-------------|---------|
 | `PYTHONUNBUFFERED` | Disable Python output buffering | `1` |
 | `PYTHONDONTWRITEBYTECODE` | Prevent Python from writing .pyc files | `1` |
-| `PORT` | Backend server port | `8000` |
+| `PORT` | Server port (frontend + backend API) | `8080` |
 
 For LLM API keys, configure them through the Settings page in the UI after deployment.
 
@@ -169,6 +184,8 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
+The backend will be available at `http://localhost:8000`.
+
 ### Frontend Development
 
 ```bash
@@ -177,7 +194,7 @@ npm install
 npm run dev
 ```
 
-The frontend development server will proxy API requests to the backend (default: http://localhost:8000).
+The frontend development server will be available at `http://localhost:5173` and will proxy API requests to the backend (default: http://localhost:8000).
 
 ## Project Structure
 
