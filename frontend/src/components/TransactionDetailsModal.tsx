@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import type { Transaction, Category } from '@/types';
-import { ArrowUpRight, ArrowDownRight, X, Save, Edit2, Check } from 'lucide-react';
+import { ArrowUpRight, ArrowDownRight, X, Edit2, Check } from 'lucide-react';
 
 interface TransactionDetailsModalProps {
   isOpen: boolean;

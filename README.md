@@ -90,6 +90,123 @@ The app uses LLMs to intelligently categorize transactions based on:
 
 Categories include: Housing, Food, Transportation, Shopping, Entertainment, Health, Financial, Education, Travel, and more.
 
+## Docker Deployment
+
+### Prerequisites
+- Docker (v20+)
+- Docker Compose (v2.0+)
+
+### Quick Start with Docker Compose
+
+```bash
+# Clone the repository
+git clone <your-repo-url>
+cd morpho
+
+# Build and start the container
+docker-compose up -d --build
+
+# View logs
+docker-compose logs -f
+
+# Stop the application
+docker-compose down
+```
+
+The application will be available at `http://localhost:8000`
+
+### Manual Docker Build
+
+```bash
+# Build the image
+docker build -t morpho-budget-tracker .
+
+# Run the container
+docker run -d \
+  --name morpho \
+  -p 8000:8000 \
+  -v $(pwd)/data:/app/data \
+  -e PYTHONUNBUFFERED=1 \
+  morpho-budget-tracker
+```
+
+### Environment Variables
+
+The following environment variables can be configured (or set via the UI):
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `PYTHONUNBUFFERED` | Disable Python output buffering | `1` |
+| `PYTHONDONTWRITEBYTECODE` | Prevent Python from writing .pyc files | `1` |
+| `PORT` | Backend server port | `8000` |
+
+For LLM API keys, configure them through the Settings page in the UI after deployment.
+
+### Data Persistence
+
+The SQLite database is stored in `/app/data` inside the container. To persist data:
+
+```bash
+# Using Docker Compose (already configured)
+volumes:
+  - ./data:/app/data
+
+# Or manually
+-v $(pwd)/data:/app/data
+```
+
+Your data will be saved in the `./data` directory on your host machine.
+
+## Development
+
+### Backend Development
+
+```bash
+cd backend
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+uvicorn app.main:app --reload
+```
+
+### Frontend Development
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+The frontend development server will proxy API requests to the backend (default: http://localhost:8000).
+
+## Project Structure
+
+```
+morpho/
+├── backend/
+│   ├── app/              # FastAPI application
+│   │   └── main.py       # Main FastAPI app
+│   ├── models/           # Database models
+│   ├── routers/          # API endpoints
+│   ├── services/         # Business logic
+│   ├── requirements.txt  # Python dependencies
+│   └── financial_data.db
+├── frontend/
+│   ├── src/
+│   │   ├── components/   # React components
+│   │   ├── pages/        # Page components
+│   │   ├── hooks/        # Custom hooks
+│   │   ├── utils/        # Utility functions
+│   │   └── App.tsx       # Main React app
+│   ├── public/
+│   ├── package.json
+│   └── vite.config.ts
+├── data/                 # Persistent data (database)
+├── Dockerfile
+├── docker-compose.yml
+└── README.md
+```
+
 ## License
 
 MIT

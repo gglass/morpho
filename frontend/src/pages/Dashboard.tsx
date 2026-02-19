@@ -27,7 +27,7 @@ export default function Dashboard() {
       end_date: undefined
     }, {
       onSuccess: (data) => {
-        setCurrentInsight(data.insight || data.response || '');
+        setCurrentInsight(data.insight || '');
         setShowInsight(true);
       }
     });
