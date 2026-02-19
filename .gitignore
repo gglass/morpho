@@ -27,3 +27,26 @@ node_modules/
 # Logs
 logs/*.log
 /backend/venv/
+
+# PyCharm
+.idea/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+venv/
+.env/
+.venv/
+
+# Data files (user's actual data)
+data/*.db
+data/*.sqlite
+data/*.sqlite3
