@@ -102,13 +102,13 @@ Categories include: Housing, Food, Transportation, Shopping, Entertainment, Heal
 cd /ai/python/morpho
 
 # Build and start the container
-docker-compose up -d --build
+docker compose up -d --build
 
 # View logs
-docker-compose logs -f morpho
+docker compose logs -f morpho
 
 # Stop the application
-docker-compose down
+docker compose down
 ```
 
 The application will be available at `http://localhost:8080` with:
@@ -116,11 +116,11 @@ The application will be available at `http://localhost:8080` with:
 - API Documentation at `/docs`
 - Health check at `/health`
 
-**Note**: The database is stored in the container filesystem (`/app/data/budget.db`). Data persists across container restarts.
+**Note**: The database is stored in the container filesystem (`/app/data/budget.db`). Data persists across container restarts only if you add a volume mount. See the Data Persistence section below.
 
 ### Environment Variables
 
-The following environment variables can be configured (or set via the UI):
+The following environment variables can be configured in `docker-compose.yml` or via the UI:
 
 | Variable | Description | Default |
 |----------|-------------|---------|
@@ -129,6 +129,21 @@ The following environment variables can be configured (or set via the UI):
 | `PORT` | Server port (frontend + backend API) | `8080` |
 
 For LLM API keys, configure them through the Settings page in the UI after deployment.
+
+### Manual Docker Build
+
+```bash
+# Build the image
+docker build -t morpho-budget-tracker .
+
+# Run with data persistence
+docker run -d \
+  --name morpho \
+  -p 8080:8080 \
+  -v $(pwd)/data:/app/data \
+  -e PYTHONUNBUFFERED=1 \
+  morpho-budget-tracker
+```
 
 ### Manual Docker Build
 
@@ -159,14 +174,15 @@ For LLM API keys, configure them through the Settings page in the UI after deplo
 
 ### Data Persistence
 
-The SQLite database is stored in `/app/data` inside the container. To persist data:
+The SQLite database is stored in `/app/data` inside the container. To persist data across container restarts, add a volume mount to your `docker-compose.yml`:
 
-```bash
-# Using Docker Compose (already configured)
+```yaml
 volumes:
   - ./data:/app/data
+```
 
-# Or manually
+Or for manual docker runs:
+```bash
 -v $(pwd)/data:/app/data
 ```
 
