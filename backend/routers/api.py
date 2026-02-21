@@ -279,7 +279,9 @@ def create_subcategory(parent_id: int, category: CategoryCreate, db: Session = D
     if not parent:
         raise HTTPException(status_code=404, detail="Parent category not found")
     
-    db_category = Category(**category.dict(), parent_id=parent_id)
+    category_data = category.dict()
+    category_data['parent_id'] = parent_id
+    db_category = Category(**category_data)
     db.add(db_category)
     db.commit()
     db.refresh(db_category)
