@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useTransactions, useCategories, useDeleteTransaction, useCategorizeTransactions, useSummary, useTransactionCount, useUpdateTransaction } from '@/hooks/useApi';
 import { formatCurrency, formatDate } from '@/utils/format';
-import { ArrowUpRight, ArrowDownRight, Search, Filter, Sparkles, Trash2, ArrowUp, ArrowDown } from 'lucide-react';
+import { ArrowUpRight, ArrowDownRight, Search, Filter, Sparkles, Trash2, ArrowUp, ArrowDown, ChevronDown } from 'lucide-react';
 import type { Transaction } from '@/types';
 import TransactionDetailsModal from "@/components/TransactionDetailsModal";
 
@@ -9,7 +9,7 @@ export default function Transactions() {
   const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<number | 'all' | -1>('all');
   const [page, setPage] = useState(0);
-  const ITEMS_PER_PAGE = 50;
+  const [itemsPerPage, setItemsPerPage] = useState(50);
   
   // Sorting state
   const [sortField, setSortField] = useState<'date' | 'amount'>('date');
@@ -17,12 +17,15 @@ export default function Transactions() {
   
   // Modal state
   const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const [isModalOpen, setIsModalOpen] = useState(false);
+  
+  // Pagination options
+  const paginationOptions = [50, 100, 250, 500, 1000];
 
-  // Reset page when filters change
+  // Reset page when filters or items per page change
   useEffect(() => {
     setPage(0);
-  }, [search, selectedCategory]);
+  }, [search, selectedCategory, itemsPerPage]);
   
   // Get filtered transaction count for pagination
   const { data: summary } = useSummary();
@@ -38,13 +41,15 @@ export default function Transactions() {
   // Calculate total pages based on whether filtering is active
   const hasFilter = (selectedCategory !== 'all' && selectedCategory !== -1) || search;
   const effectiveTotalCount = hasFilter ? (filteredCount ?? totalCount) : totalCount;
-  const totalPages = Math.ceil(effectiveTotalCount / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(effectiveTotalCount / itemsPerPage);
   
   const { data: transactions, isLoading } = useTransactions({ 
-    skip: page * ITEMS_PER_PAGE,
-    limit: ITEMS_PER_PAGE,
+    skip: page * itemsPerPage,
+    limit: itemsPerPage,
     category_id: selectedCategory === 'all' ? undefined : selectedCategory,
-    search: search || undefined
+    search: search || undefined,
+    sort_field: sortField,
+    sort_direction: sortDirection
   });
   const { data: categories } = useCategories();
   const deleteMutation = useDeleteTransaction();
@@ -59,25 +64,6 @@ export default function Transactions() {
     }
     return transactions;
   }, [transactions, selectedCategory]);
-
-  const sortedTransactions = useMemo(() => {
-    if (!filteredTransactions.length) return [];
-    
-    const sorted = [...filteredTransactions];
-    sorted.sort((a, b) => {
-      let comparison = 0;
-      
-      if (sortField === 'date') {
-        comparison = new Date(a.date).getTime() - new Date(b.date).getTime();
-      } else if (sortField === 'amount') {
-        comparison = Math.abs(a.amount) - Math.abs(b.amount);
-      }
-      
-      return sortDirection === 'asc' ? comparison : -comparison;
-    });
-    
-    return sorted;
-  }, [filteredTransactions, sortField, sortDirection]);
 
   const uncategorizedCount = useMemo(() => 
     transactions?.filter(t => !t.is_categorized).length || 0,
@@ -227,7 +213,7 @@ export default function Transactions() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-dark-500">
-                {sortedTransactions.map((transaction) => (
+                {filteredTransactions.map((transaction) => (
                   <tr 
                     key={transaction.id} 
                     className="hover:bg-dark-600/30 cursor-pointer"
@@ -300,25 +286,40 @@ export default function Transactions() {
         
         {/* Pagination Controls */}
         {totalPages > 1 && (
-          <div className="flex items-center justify-between px-6 py-4 border-t border-dark-500 bg-dark-700/30">
-            <span className="text-stone-400 text-sm">
-              Page {page + 1} of {totalPages}
-            </span>
-            <div className="flex gap-2">
-              <button
-                onClick={() => setPage(Math.max(0, page - 1))}
-                disabled={page === 0}
-                className="px-4 py-2 bg-dark-600 hover:bg-dark-500 text-stone-300 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 px-6 py-4 border-t border-dark-500 bg-dark-700/30">
+            <div className="flex items-center gap-2">
+              <span className="text-stone-400 text-sm">Rows per page:</span>
+              <select
+                value={itemsPerPage}
+                onChange={(e) => setItemsPerPage(Number(e.target.value))}
+                className="px-3 py-1.5 bg-dark-600 border border-dark-500 rounded-lg text-stone-200 focus:ring-2 focus:ring-warm-500 focus:border-transparent appearance-none cursor-pointer"
               >
-                Previous
-              </button>
-              <button
-                onClick={() => setPage(Math.min(totalPages - 1, page + 1))}
-                disabled={page === totalPages - 1}
-                className="px-4 py-2 bg-dark-600 hover:bg-dark-500 text-stone-300 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                Next
-              </button>
+                {paginationOptions.map((count) => (
+                  <option key={count} value={count}>{count}</option>
+                ))}
+              </select>
+            </div>
+            
+            <div className="flex items-center gap-2">
+              <span className="text-stone-400 text-sm">
+                Page {page + 1} of {totalPages}
+              </span>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setPage(Math.max(0, page - 1))}
+                  disabled={page === 0}
+                  className="px-4 py-2 bg-dark-600 hover:bg-dark-500 text-stone-300 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  Previous
+                </button>
+                <button
+                  onClick={() => setPage(Math.min(totalPages - 1, page + 1))}
+                  disabled={page === totalPages - 1}
+                  className="px-4 py-2 bg-dark-600 hover:bg-dark-500 text-stone-300 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  Next
+                </button>
+              </div>
             </div>
           </div>
         )}

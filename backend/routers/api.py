@@ -80,6 +80,8 @@ def get_transactions(
     is_income: Optional[bool] = None,
     search: Optional[str] = None,
     account_name: Optional[str] = None,
+    sort_field: Optional[str] = Query(None),  # 'date' or 'amount'
+    sort_direction: Optional[str] = Query('desc'),  # 'asc' or 'desc'
     db: Session = Depends(get_db)
 ):
     """Get transactions with optional filtering."""
@@ -126,7 +128,22 @@ def get_transactions(
     if search:
         query = query.filter(Transaction.description.ilike(f"%{search}%"))
     
-    query = query.order_by(Transaction.date.desc())
+    # Apply sorting
+    sort_column = None
+    if sort_field == 'date':
+        sort_column = Transaction.date
+    elif sort_field == 'amount':
+        sort_column = Transaction.amount
+    
+    if sort_column is not None:
+        if sort_direction == 'desc':
+            query = query.order_by(sort_column.desc())
+        else:
+            query = query.order_by(sort_column.asc())
+    else:
+        # Default: order by date descending
+        query = query.order_by(Transaction.date.desc())
+    
     transactions = query.offset(effective_skip).limit(limit).all()
     return transactions
 
