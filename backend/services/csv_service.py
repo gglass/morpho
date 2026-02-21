@@ -218,11 +218,12 @@ class CSVImportService:
             print(f"    Skipping row: amount is 0. Columns: {dict(row)}")
             return None
         
-        # Check for duplicate transactions based on description, amount, and datetime
+        # Check for duplicate transactions based on original_description, amount, and datetime
+        # Use original_description because the description field may be updated by LLM categorization
         # These three fields combined are extremely unlikely to be identical for different transactions
         existing = self.db.query(Transaction).filter(
             Transaction.date == date,
-            Transaction.description == description,
+            Transaction.original_description == description,
             Transaction.amount == amount
         ).first()
         
