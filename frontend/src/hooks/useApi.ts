@@ -14,9 +14,9 @@ export const useCreateTransaction = () => {
   return useMutation({
     mutationFn: api.createTransaction,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['transactions'] });
-      queryClient.invalidateQueries({ queryKey: ['summary'] });
-      queryClient.invalidateQueries({ queryKey: ['sankey'] });
+      queryClient.invalidateQueries({ queryKey: ['transactions'], exact: false });
+      queryClient.invalidateQueries({ queryKey: ['summary'], exact: false });
+      queryClient.invalidateQueries({ queryKey: ['sankey'], exact: false });
     },
   });
 };
@@ -27,9 +27,9 @@ export const useUpdateTransaction = () => {
     mutationFn: ({ id, transaction }: { id: number; transaction: Parameters<typeof api.updateTransaction>[1] }) =>
       api.updateTransaction(id, transaction),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['transactions'] });
-      queryClient.invalidateQueries({ queryKey: ['summary'] });
-      queryClient.invalidateQueries({ queryKey: ['sankey'] });
+      queryClient.invalidateQueries({ queryKey: ['transactions'], exact: false });
+      queryClient.invalidateQueries({ queryKey: ['summary'], exact: false });
+      queryClient.invalidateQueries({ queryKey: ['sankey'], exact: false });
     },
   });
 };
@@ -39,9 +39,9 @@ export const useDeleteTransaction = () => {
   return useMutation({
     mutationFn: api.deleteTransaction,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['transactions'] });
-      queryClient.invalidateQueries({ queryKey: ['summary'] });
-      queryClient.invalidateQueries({ queryKey: ['sankey'] });
+      queryClient.invalidateQueries({ queryKey: ['transactions'], exact: false });
+      queryClient.invalidateQueries({ queryKey: ['summary'], exact: false });
+      queryClient.invalidateQueries({ queryKey: ['sankey'], exact: false });
     },
   });
 };
@@ -97,9 +97,9 @@ export const useCategorizeTransactions = () => {
   return useMutation({
     mutationFn: api.categorizeTransactions,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['transactions'] });
-      queryClient.invalidateQueries({ queryKey: ['summary'] });
-      queryClient.invalidateQueries({ queryKey: ['sankey'] });
+      queryClient.invalidateQueries({ queryKey: ['transactions'], exact: false });
+      queryClient.invalidateQueries({ queryKey: ['summary'], exact: false });
+      queryClient.invalidateQueries({ queryKey: ['sankey'], exact: false });
     },
   });
 };
@@ -109,9 +109,9 @@ export const useCategorizeUncategorized = () => {
   return useMutation({
     mutationFn: (limit?: number) => api.categorizeUncategorized(limit),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['transactions'] });
-      queryClient.invalidateQueries({ queryKey: ['summary'] });
-      queryClient.invalidateQueries({ queryKey: ['sankey'] });
+      queryClient.invalidateQueries({ queryKey: ['transactions'], exact: false });
+      queryClient.invalidateQueries({ queryKey: ['summary'], exact: false });
+      queryClient.invalidateQueries({ queryKey: ['sankey'], exact: false });
     },
   });
 };
@@ -123,9 +123,9 @@ export const useImportCSV = () => {
     mutationFn: ({ file, accountName }: { file: File; accountName?: string }) =>
       api.importCSV(file, accountName),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['transactions'] });
-      queryClient.invalidateQueries({ queryKey: ['summary'] });
-      queryClient.invalidateQueries({ queryKey: ['sankey'] });
+      queryClient.invalidateQueries({ queryKey: ['transactions'], exact: false });
+      queryClient.invalidateQueries({ queryKey: ['summary'], exact: false });
+      queryClient.invalidateQueries({ queryKey: ['sankey'], exact: false });
     },
   });
 };
@@ -153,7 +153,7 @@ export const useGenerateInsights = () => {
   return useMutation({
     mutationFn: (params: { query: string; start_date?: string; end_date?: string }) => api.generateInsights(params.query, params.start_date, params.end_date),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['transactions'] });
+      queryClient.invalidateQueries({ queryKey: ['transactions'], exact: false });
     },
   });
 };
