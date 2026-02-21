@@ -41,8 +41,8 @@ export default function CategoryEditor({ categories }: CategoryEditorProps) {
     return categories.filter(cat => !cat.parent_id);
   }, [categories]);
 
-  const getSubcategories = (parentId: number) => {
-    return categories.filter(cat => cat.parent_id === parentId);
+  const getSubcategories = (parent: Category) => {
+    return parent.subcategories || [];
   };
 
   const toggleExpanded = (categoryId: number) => {
@@ -223,7 +223,7 @@ export default function CategoryEditor({ categories }: CategoryEditorProps) {
 
       <div className="space-y-2">
         {parentCategories.map((category) => {
-          const subcategories = getSubcategories(category.id);
+          const subcategories = getSubcategories(category);
           const isExpanded = expandedCategories.has(category.id);
           const isEditing = editingState?.categoryId === category.id;
 
