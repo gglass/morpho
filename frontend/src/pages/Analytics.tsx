@@ -1,16 +1,32 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useSankeyData, useTransactions } from '@/hooks/useApi';
 import SankeyChart from '@/components/SankeyChart';
-import { formatCurrency } from '@/utils/format';
+import { formatCurrency, getDateRangeForFilter } from '@/utils/format';
+
+type TimeFilter = 'all-time' | 'last-year' | 'year-to-date';
 
 export default function Analytics() {
   const [selectedNode, setSelectedNode] = useState<string | null>(null);
-  
-  const { data: sankeyData, isLoading: sankeyLoading } = useSankeyData();
+  const [timeFilter, setTimeFilter] = useState<TimeFilter>('all-time');
+
+  useEffect(() => {
+    const saved = localStorage.getItem('analytics-time-filter');
+    if (saved && ['all-time', 'last-year', 'year-to-date'].includes(saved)) {
+      setTimeFilter(saved as TimeFilter);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('analytics-time-filter', timeFilter);
+  }, [timeFilter]);
+
+  const dateRange = useMemo(() => getDateRangeForFilter(timeFilter), [timeFilter]);
+  const { data: sankeyData, isLoading: sankeyLoading } = useSankeyData(dateRange);
   const { data: transactions, isLoading: transactionsLoading } = useTransactions({
     skip: 0,
     limit: 100,
-    category_id: undefined
+    category_id: undefined,
+    ...dateRange
   });
 
   const categoryMap = useMemo(() => {
@@ -39,6 +55,22 @@ export default function Analytics() {
       <div>
         <h1 className="text-3xl font-bold text-stone-100">Analytics</h1>
         <p className="text-stone-400 mt-1">Deep dive into your spending patterns</p>
+      </div>
+
+      <div className="flex gap-2">
+        {(['all-time', 'last-year', 'year-to-date'] as TimeFilter[]).map((filter) => (
+          <button
+            key={filter}
+            onClick={() => setTimeFilter(filter)}
+            className={`px-4 py-2 rounded-lg transition-all duration-200 font-medium ${
+              timeFilter === filter
+                ? 'bg-warm-500 text-white'
+                : 'bg-dark-700 text-stone-300 hover:bg-dark-600'
+            }`}
+          >
+            {filter === 'all-time' ? 'All Time' : filter === 'last-year' ? 'Last Year' : 'Year to Date'}
+          </button>
+        ))}
       </div>
 
       <div className="card p-6">

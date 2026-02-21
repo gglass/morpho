@@ -63,10 +63,10 @@ export const useLLMConfigs = () => {
 };
 
 // Analytics
-export const useSummary = () => {
+export const useSummary = (params?: { start_date?: string; end_date?: string }) => {
   return useQuery({
-    queryKey: ['summary'],
-    queryFn: api.getSummary,
+    queryKey: ['summary', params],
+    queryFn: () => api.getSummary(params),
   });
 };
 

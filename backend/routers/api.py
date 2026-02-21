@@ -344,18 +344,37 @@ def get_transaction_count(
 
 
 @router.get("/analytics/summary")
-def get_summary(db: Session = Depends(get_db)):
-    """Get summary statistics."""
+def get_summary(
+    start_date: Optional[datetime] = None,
+    end_date: Optional[datetime] = None,
+    db: Session = Depends(get_db)
+):
+    """Get summary statistics with optional date filtering."""
     service = AnalyticsService(db)
     
-    # Get total income and expenses
-    total_income = db.query(Transaction).filter(Transaction.amount > 0).with_entities(
-        func.sum(Transaction.amount)
-    ).scalar() or 0
+    # Build query for income
+    income_query = db.query(Transaction).filter(Transaction.amount > 0)
+    if start_date:
+        income_query = income_query.filter(Transaction.date >= start_date)
+    if end_date:
+        income_query = income_query.filter(Transaction.date <= end_date)
     
-    total_expenses = db.query(Transaction).filter(Transaction.amount < 0).with_entities(
-        func.sum(Transaction.amount)
-    ).scalar() or 0
+    # Build query for expenses
+    expenses_query = db.query(Transaction).filter(Transaction.amount < 0)
+    if start_date:
+        expenses_query = expenses_query.filter(Transaction.date >= start_date)
+    if end_date:
+        expenses_query = expenses_query.filter(Transaction.date <= end_date)
+    
+    # Build query for transaction count
+    count_query = db.query(Transaction)
+    if start_date:
+        count_query = count_query.filter(Transaction.date >= start_date)
+    if end_date:
+        count_query = count_query.filter(Transaction.date <= end_date)
+    
+    total_income = income_query.with_entities(func.sum(Transaction.amount)).scalar() or 0
+    total_expenses = expenses_query.with_entities(func.sum(Transaction.amount)).scalar() or 0
     
     uncategorized_count = service.get_uncategorized_count()
     
@@ -363,7 +382,7 @@ def get_summary(db: Session = Depends(get_db)):
         "total_income": round(total_income, 2),
         "total_expenses": round(abs(total_expenses), 2),
         "net": round(total_income + total_expenses, 2),
-        "transaction_count": db.query(Transaction).count(),
+        "transaction_count": count_query.count(),
         "uncategorized_count": uncategorized_count
     }
 

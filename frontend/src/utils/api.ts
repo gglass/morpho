@@ -84,8 +84,8 @@ export const getSankeyData = async (params?: { start_date?: string; end_date?: s
   return data;
 };
 
-export const getSummary = async () => {
-  const { data } = await api.get<Summary>('/analytics/summary');
+export const getSummary = async (params?: { start_date?: string; end_date?: string }) => {
+  const { data } = await api.get<Summary>('/analytics/summary', { params });
   return data;
 };
 

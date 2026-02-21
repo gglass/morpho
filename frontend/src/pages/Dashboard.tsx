@@ -1,11 +1,27 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useTransactions, useSummary, useCategorizeTransactions, useGenerateInsights } from '@/hooks/useApi';
-import { formatCurrency, formatRelativeDate } from '@/utils/format';
+import { formatCurrency, formatRelativeDate, getDateRangeForFilter } from '@/utils/format';
 import { ArrowUpRight, ArrowDownRight, Sparkles, Wallet, TrendingUp, TrendingDown, DollarSign, MessageSquare } from 'lucide-react';
 import AIInsightRenderer from '@/components/AIInsightRenderer';
 
+type TimeFilter = 'all-time' | 'last-year' | 'year-to-date';
+
 export default function Dashboard() {
-  const { data: summary } = useSummary();
+  const [timeFilter, setTimeFilter] = useState<TimeFilter>('all-time');
+
+  useEffect(() => {
+    const saved = localStorage.getItem('dashboard-time-filter');
+    if (saved && ['all-time', 'last-year', 'year-to-date'].includes(saved)) {
+      setTimeFilter(saved as TimeFilter);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('dashboard-time-filter', timeFilter);
+  }, [timeFilter]);
+
+  const dateRange = useMemo(() => getDateRangeForFilter(timeFilter), [timeFilter]);
+  const { data: summary } = useSummary(dateRange);
   const { data: transactions, isLoading: transactionsLoading } = useTransactions({ limit: 10 });
   const categorizeMutation = useCategorizeTransactions();
   const generateInsightsMutation = useGenerateInsights();
@@ -138,22 +154,40 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {stats.map((stat, index) => (
-          <div key={index} className="card p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-stone-400 text-sm">{stat.title}</p>
-                <p className={`text-2xl font-bold mt-1 ${stat.color}`}>
-                  {stat.isCount ? stat.value.toLocaleString() : formatCurrency(stat.value)}
-                </p>
-              </div>
-              <div className={`w-12 h-12 ${stat.bgColor} rounded-xl flex items-center justify-center`}>
-                <stat.icon className={`w-6 h-6 ${stat.color}`} />
+      <div className="space-y-6">
+        <div className="flex gap-2">
+          {(['all-time', 'last-year', 'year-to-date'] as TimeFilter[]).map((filter) => (
+            <button
+              key={filter}
+              onClick={() => setTimeFilter(filter)}
+              className={`px-4 py-2 rounded-lg transition-all duration-200 font-medium ${
+                timeFilter === filter
+                  ? 'bg-warm-500 text-white'
+                  : 'bg-dark-700 text-stone-300 hover:bg-dark-600'
+              }`}
+            >
+              {filter === 'all-time' ? 'All Time' : filter === 'last-year' ? 'Last Year' : 'Year to Date'}
+            </button>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {stats.map((stat, index) => (
+            <div key={index} className="card p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-stone-400 text-sm">{stat.title}</p>
+                  <p className={`text-2xl font-bold mt-1 ${stat.color}`}>
+                    {stat.isCount ? stat.value.toLocaleString() : formatCurrency(stat.value)}
+                  </p>
+                </div>
+                <div className={`w-12 h-12 ${stat.bgColor} rounded-xl flex items-center justify-center`}>
+                  <stat.icon className={`w-6 h-6 ${stat.color}`} />
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
       <div className="card">
