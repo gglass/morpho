@@ -10,6 +10,7 @@ if [ ! -d "backend" ] || [ ! -d "frontend" ]; then
     exit 1
 fi
 
+
 # Function to cleanup processes on exit
 cleanup() {
     echo ""
