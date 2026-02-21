@@ -3,6 +3,7 @@ import { useLLMConfigs, useCategories } from '@/hooks/useApi';
 import { useQueryClient } from '@tanstack/react-query';
 import { createLLMConfig, deleteLLMConfig, updateLLMConfig } from '@/utils/api';
 import { Key, Server, Plus, Trash2, Sparkles, RefreshCw, Edit } from 'lucide-react';
+import CategoryEditor from '@/components/CategoryEditor';
 
 interface LLMFormData {
   provider: string;
@@ -353,27 +354,7 @@ export default function Settings() {
       {categories && categories.length > 0 && (
         <div className="card">
           <div className="p-6 border-b border-dark-500">
-            <h2 className="text-xl font-bold text-stone-100">Categories</h2>
-          </div>
-          <div className="divide-y divide-dark-500">
-            {categories.map((category) => (
-              <div key={category.id} className="p-6 flex items-center justify-between">
-                <div className="flex items-center gap-4">
-                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${
-                    category.color ? `bg-${category.color}-500/10` : 'bg-gray-500/10'
-                  }`}>
-                    <span className={`text-lg font-bold ${
-                      category.color ? `text-${category.color}-400` : 'text-gray-400'
-                    }`}>
-                      {category.name.charAt(0).toUpperCase()}
-                    </span>
-                  </div>
-                  <div>
-                    <p className="text-stone-100 font-medium">{category.name}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
+            <CategoryEditor categories={categories} />
           </div>
         </div>
       )}

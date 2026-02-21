@@ -221,6 +221,118 @@ def create_category(category: CategoryCreate, db: Session = Depends(get_db)):
     db.refresh(db_category)
     return db_category
 
+@router.put("/categories/{category_id}", response_model=CategoryResponse)
+def update_category(category_id: int, category_update: CategoryCreate, db: Session = Depends(get_db)):
+    """Update a category."""
+    db_category = db.query(Category).filter(Category.id == category_id).first()
+    if not db_category:
+        raise HTTPException(status_code=404, detail="Category not found")
+    
+    # Prevent renaming system categories with transactions
+    if db_category.is_system:
+        # Check if there are transactions using this category
+        transaction_count = db.query(Transaction).filter(
+            (Transaction.category_id == category_id) | (Transaction.subcategory_id == category_id)
+        ).count()
+        if transaction_count > 0 and category_update.name != db_category.name:
+            raise HTTPException(status_code=400, detail="Cannot rename system categories with transactions")
+    
+    update_data = category_update.dict(exclude_unset=True)
+    for field, value in update_data.items():
+        setattr(db_category, field, value)
+    
+    db.commit()
+    db.refresh(db_category)
+    return db_category
+
+@router.delete("/categories/{category_id}")
+def delete_category(category_id: int, db: Session = Depends(get_db)):
+    """Delete a category."""
+    db_category = db.query(Category).filter(Category.id == category_id).first()
+    if not db_category:
+        raise HTTPException(status_code=404, detail="Category not found")
+    
+    # Prevent deletion of system categories
+    if db_category.is_system:
+        raise HTTPException(status_code=400, detail="Cannot delete system categories")
+    
+    # Check for transactions using this category
+    transaction_count = db.query(Transaction).filter(
+        (Transaction.category_id == category_id) | (Transaction.subcategory_id == category_id)
+    ).count()
+    if transaction_count > 0:
+        raise HTTPException(status_code=400, detail="Cannot delete category with transactions")
+    
+    # Check for subcategories
+    subcategory_count = db.query(Category).filter(Category.parent_id == category_id).count()
+    if subcategory_count > 0:
+        raise HTTPException(status_code=400, detail="Cannot delete category with subcategories")
+    
+    db.delete(db_category)
+    db.commit()
+    return {"message": "Category deleted"}
+
+@router.post("/categories/{parent_id}/subcategories", response_model=CategoryResponse)
+def create_subcategory(parent_id: int, category: CategoryCreate, db: Session = Depends(get_db)):
+    """Create a subcategory under a parent category."""
+    parent = db.query(Category).filter(Category.id == parent_id).first()
+    if not parent:
+        raise HTTPException(status_code=404, detail="Parent category not found")
+    
+    db_category = Category(**category.dict(), parent_id=parent_id)
+    db.add(db_category)
+    db.commit()
+    db.refresh(db_category)
+    return db_category
+
+@router.put("/categories/{category_id}/name", response_model=CategoryResponse)
+def update_subcategory(category_id: int, category_update: CategoryCreate, db: Session = Depends(get_db)):
+    """Update a subcategory."""
+    db_category = db.query(Category).filter(Category.id == category_id).first()
+    if not db_category:
+        raise HTTPException(status_code=404, detail="Subcategory not found")
+    
+    # Prevent renaming system categories with transactions
+    if db_category.is_system:
+        transaction_count = db.query(Transaction).filter(
+            (Transaction.category_id == category_id) | (Transaction.subcategory_id == category_id)
+        ).count()
+        if transaction_count > 0 and category_update.name != db_category.name:
+            raise HTTPException(status_code=400, detail="Cannot rename system categories with transactions")
+    
+    update_data = category_update.dict(exclude_unset=True)
+    for field, value in update_data.items():
+        setattr(db_category, field, value)
+    
+    db.commit()
+    db.refresh(db_category)
+    return db_category
+
+@router.delete("/subcategories/{category_id}")
+def delete_subcategory(category_id: int, db: Session = Depends(get_db)):
+    """Delete a subcategory."""
+    db_category = db.query(Category).filter(Category.id == category_id).first()
+    if not db_category:
+        raise HTTPException(status_code=404, detail="Subcategory not found")
+    
+    if not db_category.parent_id:
+        raise HTTPException(status_code=400, detail="Can only delete subcategories, not parent categories")
+    
+    # Prevent deletion of system categories
+    if db_category.is_system:
+        raise HTTPException(status_code=400, detail="Cannot delete system categories")
+    
+    # Check for transactions using this subcategory
+    transaction_count = db.query(Transaction).filter(
+        (Transaction.category_id == category_id) | (Transaction.subcategory_id == category_id)
+    ).count()
+    if transaction_count > 0:
+        raise HTTPException(status_code=400, detail="Cannot delete subcategory with transactions")
+    
+    db.delete(db_category)
+    db.commit()
+    return {"message": "Subcategory deleted"}
+
 # LLM Configuration routes
 @router.get("/llm-configs", response_model=List[LLMConfigResponse])
 def get_llm_configs(db: Session = Depends(get_db)):

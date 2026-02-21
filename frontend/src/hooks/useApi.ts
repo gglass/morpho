@@ -54,6 +54,59 @@ export const useCategories = () => {
   });
 };
 
+export const useUpdateCategory = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, category }: { id: number; category: Parameters<typeof api.updateCategory>[1] }) =>
+      api.updateCategory(id, category),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['categories'] });
+    },
+  });
+};
+
+export const useDeleteCategory = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: api.deleteCategory,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['categories'] });
+    },
+  });
+};
+
+export const useCreateSubcategory = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: ({ parentId, category }: { parentId: number; category: Parameters<typeof api.createSubcategory>[1] }) =>
+      api.createSubcategory(parentId, category),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['categories'] });
+    },
+  });
+};
+
+export const useUpdateSubcategory = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, category }: { id: number; category: Parameters<typeof api.updateSubcategory>[1] }) =>
+      api.updateSubcategory(id, category),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['categories'] });
+    },
+  });
+};
+
+export const useDeleteSubcategory = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: api.deleteSubcategory,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['categories'] });
+    },
+  });
+};
+
 // LLM Configs
 export const useLLMConfigs = () => {
   return useQuery({

@@ -49,6 +49,29 @@ export const createCategory = async (category: Partial<Category>) => {
   return data;
 };
 
+export const updateCategory = async (id: number, category: Partial<Category>) => {
+  const { data } = await api.put<Category>(`/categories/${id}`, category);
+  return data;
+};
+
+export const deleteCategory = async (id: number) => {
+  await api.delete(`/categories/${id}`);
+};
+
+export const createSubcategory = async (parentId: number, category: Partial<Category>) => {
+  const { data } = await api.post<Category>(`/categories/${parentId}/subcategories`, category);
+  return data;
+};
+
+export const updateSubcategory = async (id: number, category: Partial<Category>) => {
+  const { data } = await api.put<Category>(`/categories/${id}/name`, category);
+  return data;
+};
+
+export const deleteSubcategory = async (id: number) => {
+  await api.delete(`/subcategories/${id}`);
+};
+
 // LLM Configs
 export const getLLMConfigs = async () => {
   const { data } = await api.get<LLMConfig[]>('/llm-configs');
